@@ -1,10 +1,10 @@
-import { useLockFn, useSetState } from "ahooks";
-import dayjs from "dayjs";
-import { motion } from "framer-motion";
-import { memo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useMessage } from "@/hooks/use-notification";
-import parseTraffic from "@/utils/parse-traffic";
+import { useLockFn, useSetState } from 'ahooks';
+import dayjs from 'dayjs';
+import { motion } from 'framer-motion';
+import { memo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useMessage } from '@/hooks/use-notification';
+import parseTraffic from '@/utils/parse-traffic';
 import {
   FiberManualRecord,
   FilterDrama,
@@ -12,8 +12,8 @@ import {
   Menu as MenuIcon,
   Terminal,
   Update,
-} from "@mui/icons-material";
-import LoadingButton from "@mui/lab/LoadingButton";
+} from '@mui/icons-material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import {
   alpha,
   Button,
@@ -24,10 +24,10 @@ import {
   Paper,
   Tooltip,
   useTheme,
-} from "@mui/material";
-import { Profile, useClash } from "@nyanpasu/interface";
-import { cleanDeepClickEvent, cn } from "@nyanpasu/ui";
-import { ProfileDialog } from "./profile-dialog";
+} from '@mui/material';
+import { Profile, useClash } from '@nyanpasu/interface';
+import { cleanDeepClickEvent, cn } from '@nyanpasu/ui';
+import { ProfileDialog } from './profile-dialog';
 
 export interface ProfileItemProps {
   item: Profile.Item;
@@ -79,7 +79,7 @@ export const ProfileItem = memo(function ProfileItem({
 
   const { progress, total, used } = calc();
 
-  const isRemote = item.type === "remote";
+  const isRemote = item.type === 'remote';
 
   const IconComponent = isRemote ? FilterDrama : InsertDriveFile;
 
@@ -87,11 +87,11 @@ export const ProfileItem = memo(function ProfileItem({
 
   const menuMapping = {
     Select: () => handleSelect(),
-    "Edit Info": () => setOpen(true),
-    "Proxy Chains": () => onClickChains(item),
-    "Open File": () => viewProfile(item.uid),
+    'Edit Info': () => setOpen(true),
+    'Proxy Chains': () => onClickChains(item),
+    'Open File': () => viewProfile(item.uid),
     Update: () => handleUpdate(),
-    "Update(Proxy)": () => handleUpdate(true),
+    'Update(Proxy)': () => handleUpdate(true),
     Delete: () => handleDelete(),
   };
 
@@ -108,8 +108,8 @@ export const ProfileItem = memo(function ProfileItem({
       await deleteConnections();
     } catch (err) {
       useMessage(`Error setting profile: \n ${JSON.stringify(err)}`, {
-        title: t("Error"),
-        type: "error",
+        title: t('Error'),
+        type: 'error',
       });
     } finally {
       setLoading({ card: false });
@@ -146,8 +146,8 @@ export const ProfileItem = memo(function ProfileItem({
       await deleteProfile(item.uid);
     } catch (err) {
       useMessage(`Delete failed: \n ${JSON.stringify(err)}`, {
-        title: t("Error"),
-        type: "error",
+        title: t('Error'),
+        type: 'error',
       });
     }
   });
@@ -203,7 +203,7 @@ export const ProfileItem = memo(function ProfileItem({
               <Chip
                 className="!pl-2 !pr-2 font-bold"
                 avatar={<IconComponent className="!size-5" color="primary" />}
-                label={isRemote ? "Remote" : "Local"}
+                label={isRemote ? 'Remote' : 'Local'}
               />
             </Tooltip>
 
@@ -215,7 +215,7 @@ export const ProfileItem = memo(function ProfileItem({
             )}
 
             <div className="text-sm">
-              {item.updated! > 0 ? dayjs(item.updated! * 1000).fromNow() : ""}
+              {item.updated! > 0 ? dayjs(item.updated! * 1000).fromNow() : ''}
             </div>
           </div>
 
@@ -242,18 +242,18 @@ export const ProfileItem = memo(function ProfileItem({
             <Button
               className="!mr-auto"
               size="small"
-              variant={chainsSelected ? "contained" : "outlined"}
+              variant={chainsSelected ? 'contained' : 'outlined'}
               startIcon={<Terminal />}
               onClick={(e) => {
                 cleanDeepClickEvent(e);
                 onClickChains(item);
               }}
             >
-              {t("Proxy Chains")}
+              {t('Proxy Chains')}
             </Button>
 
             {isRemote && (
-              <Tooltip title={t("Update")}>
+              <Tooltip title={t('Update')}>
                 <LoadingButton
                   size="small"
                   variant="outlined"
@@ -269,7 +269,7 @@ export const ProfileItem = memo(function ProfileItem({
               </Tooltip>
             )}
 
-            <Tooltip title={t("Menu")}>
+            <Tooltip title={t('Menu')}>
               <Button
                 size="small"
                 variant="contained"
@@ -287,15 +287,15 @@ export const ProfileItem = memo(function ProfileItem({
 
         <motion.div
           className={cn(
-            "absolute left-0 top-0 h-full w-full",
-            "flex-col items-center justify-center gap-4",
-            "text-shadow-xl rounded-3xl font-bold backdrop-blur",
+            'absolute left-0 top-0 h-full w-full',
+            'flex-col items-center justify-center gap-4',
+            'text-shadow-xl rounded-3xl font-bold backdrop-blur'
           )}
-          initial={{ opacity: 0, display: "none" }}
-          animate={loading.card ? "show" : "hidden"}
+          initial={{ opacity: 0, display: 'none' }}
+          animate={loading.card ? 'show' : 'hidden'}
           variants={{
-            show: { opacity: 1, display: "flex" },
-            hidden: { opacity: 0, transitionEnd: { display: "none" } },
+            show: { opacity: 1, display: 'flex' },
+            hidden: { opacity: 0, transitionEnd: { display: 'none' } },
           }}
         >
           <LinearProgress className="w-40" />

@@ -1,8 +1,8 @@
-import { useDebounceEffect } from "ahooks";
-import { useRef } from "react";
-import { VList, VListHandle } from "virtua";
-import { LogMessage } from "@nyanpasu/interface";
-import LogItem from "./log-item";
+import { useDebounceEffect } from 'ahooks';
+import { useRef } from 'react';
+import { VList, VListHandle } from 'virtua';
+import { LogMessage } from '@nyanpasu/interface';
+import LogItem from './log-item';
 
 export const LogList = ({ data }: { data: LogMessage[] }) => {
   const vListRef = useRef<VListHandle>(null);
@@ -13,7 +13,7 @@ export const LogList = ({ data }: { data: LogMessage[] }) => {
     () => {
       if (shouldStickToBottom.current) {
         vListRef.current?.scrollToIndex(data.length - 1, {
-          align: "end",
+          align: 'end',
           smooth: true,
         });
       }

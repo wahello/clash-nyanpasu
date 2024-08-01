@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import AddIcon from "@mui/icons-material/Add";
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import AddIcon from '@mui/icons-material/Add';
 import {
   Box,
   Chip,
@@ -9,11 +9,11 @@ import {
   TextField,
   Tooltip,
   Typography,
-} from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { useClash, useNyanpasu } from "@nyanpasu/interface";
-import { BaseCard, BaseDialog, Expand } from "@nyanpasu/ui";
-import { ClashWebItem, extractServer, openWebUrl, renderChip } from "./modules";
+} from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
+import { useClash, useNyanpasu } from '@nyanpasu/interface';
+import { BaseCard, BaseDialog, Expand } from '@nyanpasu/ui';
+import { ClashWebItem, extractServer, openWebUrl, renderChip } from './modules';
 
 export const SettingClashWeb = () => {
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ export const SettingClashWeb = () => {
 
   const [open, setOpen] = useState(false);
 
-  const [editString, setEditString] = useState("");
+  const [editString, setEditString] = useState('');
 
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
@@ -63,12 +63,12 @@ export const SettingClashWeb = () => {
   return (
     <>
       <BaseCard
-        label={t("Web UI")}
+        label={t('Web UI')}
         labelChildren={
           <Tooltip title="New Item">
             <IconButton
               onClick={() => {
-                setEditString("");
+                setEditString('');
                 setEditIndex(null);
                 setOpen(true);
               }}
@@ -99,7 +99,7 @@ export const SettingClashWeb = () => {
       </BaseCard>
 
       <BaseDialog
-        title={editIndex != null ? "Edit Item" : "New Item"}
+        title={editIndex != null ? 'Edit Item' : 'New Item'}
         open={open}
         onClose={() => {
           setOpen(false);
@@ -109,26 +109,26 @@ export const SettingClashWeb = () => {
           updateItem();
           setOpen(false);
           setEditIndex(null);
-          setEditString("");
+          setEditString('');
         }}
         ok="Submit"
         close="Close"
-        contentSx={{ overflow: editString ? "auto" : "hidden" }}
+        contentSx={{ overflow: editString ? 'auto' : 'hidden' }}
         divider
       >
         <Box display="flex" flexDirection="column" gap={1}>
           <Typography variant="h5">Input</Typography>
 
           <TextField
-            sx={{ width: "100%" }}
+            sx={{ width: '100%' }}
             value={editString}
             variant="outlined"
             multiline
-            placeholder={`Support %host %port %secret`}
+            placeholder={'Support %host %port %secret'}
             onChange={(e) => setEditString(e.target.value)}
           />
 
-          <Typography sx={{ userSelect: "text" }}>
+          <Typography sx={{ userSelect: 'text' }}>
             Replace host, port, secret with:
           </Typography>
 
@@ -144,7 +144,7 @@ export const SettingClashWeb = () => {
 
               <Typography variant="h5">Result</Typography>
 
-              <Typography sx={{ userSelect: "text" }} component="div">
+              <Typography sx={{ userSelect: 'text' }} component="div">
                 {renderChip(editString, labels)}
               </Typography>
             </Box>

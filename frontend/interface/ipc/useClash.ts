@@ -1,7 +1,7 @@
-import useSWR from "swr";
-import * as tauri from "@/service/tauri";
-import { ClashConfig, Profile } from "..";
-import { Clash, clash } from "../service/clash";
+import useSWR from 'swr';
+import * as tauri from '@/service/tauri';
+import { ClashConfig, Profile } from '..';
+import { Clash, clash } from '../service/clash';
 
 /**
  * useClash with swr.
@@ -10,7 +10,7 @@ import { Clash, clash } from "../service/clash";
 export const useClash = () => {
   const { deleteConnections, ...api } = clash();
 
-  const getClashInfo = useSWR("getClashInfo", tauri.getClashInfo);
+  const getClashInfo = useSWR('getClashInfo', tauri.getClashInfo);
 
   const setClashInfo = async (payload: Partial<ClashConfig>) => {
     try {
@@ -22,7 +22,7 @@ export const useClash = () => {
     }
   };
 
-  const getConfigs = useSWR("getClashConfig", api.getConfigs);
+  const getConfigs = useSWR('getClashConfig', api.getConfigs);
 
   const setConfigs = async (payload: Partial<Clash.Config>) => {
     try {
@@ -34,13 +34,13 @@ export const useClash = () => {
     }
   };
 
-  const getVersion = useSWR("getClashVersion", api.getVersion);
+  const getVersion = useSWR('getClashVersion', api.getVersion);
 
-  const getRules = useSWR("getClashRules", api.getRules);
+  const getRules = useSWR('getClashRules', api.getRules);
 
-  const getRuntimeExists = useSWR("getRuntimeExists", tauri.getRuntimeExists);
+  const getRuntimeExists = useSWR('getRuntimeExists', tauri.getRuntimeExists);
 
-  const getProfiles = useSWR("getProfiles", tauri.getProfiles);
+  const getProfiles = useSWR('getProfiles', tauri.getProfiles);
 
   const setProfiles = async (index: string, profile: Partial<Profile.Item>) => {
     await tauri.setProfiles({ index, profile });
@@ -83,10 +83,10 @@ export const useClash = () => {
       if (result) {
         return result;
       } else {
-        return "";
+        return '';
       }
     } else {
-      return "";
+      return '';
     }
   };
 
@@ -96,7 +96,7 @@ export const useClash = () => {
     await getProfiles.mutate();
   };
 
-  const getRuntimeLogs = useSWR("getRuntimeLogs", tauri.getRuntimeLogs, {
+  const getRuntimeLogs = useSWR('getRuntimeLogs', tauri.getRuntimeLogs, {
     refreshInterval: 1000,
   });
 

@@ -1,20 +1,20 @@
-import { useLockFn } from "ahooks";
-import useDebounceFn from "ahooks/lib/useDebounceFn";
-import { AnimatePresence, motion } from "framer-motion";
+import { useLockFn } from 'ahooks';
+import useDebounceFn from 'ahooks/lib/useDebounceFn';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   CSSProperties,
   ReactNode,
   useEffect,
   useLayoutEffect,
   useState,
-} from "react";
-import { useTranslation } from "react-i18next";
-import { getSystem, useClickPosition } from "@/hooks";
-import { cn } from "@/utils";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { Button, Divider } from "@mui/material";
-import { alpha, useTheme } from "@mui/material/styles";
-import * as Portal from "@radix-ui/react-portal";
+} from 'react';
+import { useTranslation } from 'react-i18next';
+import { getSystem, useClickPosition } from '@/hooks';
+import { cn } from '@/utils';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { Button, Divider } from '@mui/material';
+import { alpha, useTheme } from '@mui/material/styles';
+import * as Portal from '@radix-ui/react-portal';
 
 const OS = getSystem();
 
@@ -86,7 +86,7 @@ export const BaseDialog = ({
   const handleOk = useLockFn(async () => {
     if (!onOk) return;
 
-    if (onOk.constructor.name === "AsyncFunction") {
+    if (onOk.constructor.name === 'AsyncFunction') {
       try {
         setOkLoading(true);
 
@@ -118,7 +118,7 @@ export const BaseDialog = ({
               style={{
                 backgroundColor: alpha(palette.primary[palette.mode], 0.1),
               }}
-              animate={open ? "open" : "closed"}
+              animate={open ? 'open' : 'closed'}
               initial={{ opacity: 0 }}
               variants={{
                 open: { opacity: 1 },
@@ -130,23 +130,23 @@ export const BaseDialog = ({
 
           <motion.div
             className={cn(
-              "absolute left-[50%] top-[50%] z-50",
-              full ? "h-dvh w-full" : "min-w-96 rounded-3xl shadow",
-              palette.mode === "dark"
-                ? "text-white shadow-zinc-900"
-                : "text-black",
+              'absolute left-[50%] top-[50%] z-50',
+              full ? 'h-dvh w-full' : 'min-w-96 rounded-3xl shadow',
+              palette.mode === 'dark'
+                ? 'text-white shadow-zinc-900'
+                : 'text-black'
             )}
             style={{
               backgroundColor: palette.background.default,
             }}
-            animate={open ? "open" : "closed"}
+            animate={open ? 'open' : 'closed'}
             initial={{
               opacity: 0.3,
               scale: 0,
               x: offset.x - window.innerWidth / 2,
               y: offset.y - window.innerHeight / 2,
-              translateX: "-50%",
-              translateY: "-50%",
+              translateX: '-50%',
+              translateY: '-50%',
             }}
             variants={{
               open: {
@@ -163,15 +163,15 @@ export const BaseDialog = ({
               },
             }}
             transition={{
-              type: "spring",
+              type: 'spring',
               bounce: 0,
               duration: 0.35,
             }}
           >
             <div
               className={cn(
-                "text-xl",
-                !full ? "m-4" : OS === "macos" ? "ml-20 p-3" : "m-2 ml-6",
+                'text-xl',
+                !full ? 'm-4' : OS === 'macos' ? 'ml-20 p-3' : 'm-2 ml-6'
               )}
               data-windrag={full}
             >
@@ -182,11 +182,11 @@ export const BaseDialog = ({
 
             <div
               className={cn(
-                "relative overflow-y-auto overflow-x-hidden p-4",
-                full && "h-full px-6",
+                'relative overflow-y-auto overflow-x-hidden p-4',
+                full && 'h-full px-6'
               )}
               style={{
-                maxHeight: full ? "calc(100vh - 100px)" : "calc(100vh - 200px)",
+                maxHeight: full ? 'calc(100vh - 100px)' : 'calc(100vh - 200px)',
                 ...contentStyle,
               }}
             >
@@ -195,10 +195,10 @@ export const BaseDialog = ({
 
             {divider && <Divider />}
 
-            <div className={cn("m-2 flex justify-end gap-2", full && "mx-6")}>
+            <div className={cn('m-2 flex justify-end gap-2', full && 'mx-6')}>
               {onClose && (
                 <Button variant="outlined" onClick={handleClose}>
-                  {close || t("Close")}
+                  {close || t('Close')}
                 </Button>
               )}
 
@@ -209,7 +209,7 @@ export const BaseDialog = ({
                   variant="contained"
                   onClick={handleOk}
                 >
-                  {ok || t("Ok")}
+                  {ok || t('Ok')}
                 </LoadingButton>
               )}
             </div>

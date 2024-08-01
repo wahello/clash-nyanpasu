@@ -1,13 +1,13 @@
-import { useLockFn, useReactive } from "ahooks";
-import { motion } from "framer-motion";
-import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useMessage } from "@/hooks/use-notification";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { Box, List, ListItem } from "@mui/material";
-import { ClashCore, useClash, useNyanpasu } from "@nyanpasu/interface";
-import { BaseCard, ExpandMore } from "@nyanpasu/ui";
-import { ClashCoreItem } from "./modules/clash-core";
+import { useLockFn, useReactive } from 'ahooks';
+import { motion } from 'framer-motion';
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useMessage } from '@/hooks/use-notification';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { Box, List, ListItem } from '@mui/material';
+import { ClashCore, useClash, useNyanpasu } from '@nyanpasu/interface';
+import { BaseCard, ExpandMore } from '@nyanpasu/ui';
+import { ClashCoreItem } from './modules/clash-core';
 
 export const SettingClashCore = () => {
   const { t } = useTranslation();
@@ -38,7 +38,7 @@ export const SettingClashCore = () => {
       ? `${data.version} Premium`
       : data?.meta
         ? `${data.version} Meta`
-        : data?.version || "-";
+        : data?.version || '-';
   }, [getVersion.data, nyanpasuConfig]);
 
   const changeClashCore = useLockFn(async (core: ClashCore) => {
@@ -50,8 +50,8 @@ export const SettingClashCore = () => {
       await setClashCore(core);
 
       useMessage(`Successfully switch to ${core}`, {
-        type: "info",
-        title: t("Success"),
+        type: 'info',
+        title: t('Success'),
       });
     } catch (e) {
       useMessage(
@@ -59,8 +59,8 @@ export const SettingClashCore = () => {
           e instanceof Error ? e.message : String(e)
         }`,
         {
-          type: "error",
-          title: t("Error"),
+          type: 'error',
+          title: t('Error'),
         },
       );
     } finally {
@@ -74,14 +74,14 @@ export const SettingClashCore = () => {
 
       await restartSidecar();
 
-      useMessage(t("Successfully restart core"), {
-        type: "info",
-        title: t("Success"),
+      useMessage(t('Successfully restart core'), {
+        type: 'info',
+        title: t('Success'),
       });
     } catch (e) {
-      useMessage("Restart failed, please check log.", {
-        type: "error",
-        title: t("Error"),
+      useMessage('Restart failed, please check log.', {
+        type: 'error',
+        title: t('Error'),
       });
     } finally {
       loading.restart = false;
@@ -94,9 +94,9 @@ export const SettingClashCore = () => {
 
       await getLatestCore.mutate();
     } catch (e) {
-      useMessage("Fetch failed, please check your internet connection.", {
-        type: "error",
-        title: t("Error"),
+      useMessage('Fetch failed, please check your internet connection.', {
+        type: 'error',
+        title: t('Error'),
       });
     } finally {
       loading.check = false;
@@ -104,20 +104,20 @@ export const SettingClashCore = () => {
   });
 
   const handleUpdateCore = useLockFn(
-    async (core: Required<IVergeConfig>["clash_core"]) => {
+    async (core: Required<IVergeConfig>['clash_core']) => {
       try {
         loading.mask = true;
 
         await updateCore(core);
 
         useMessage(`Successfully update core ${core}`, {
-          type: "info",
-          title: t("Success"),
+          type: 'info',
+          title: t('Success'),
         });
       } catch (e) {
-        useMessage(`Update failed.`, {
-          type: "error",
-          title: t("Error"),
+        useMessage('Update failed.', {
+          type: 'error',
+          title: t('Error'),
         });
       } finally {
         loading.mask = false;
@@ -140,7 +140,7 @@ export const SettingClashCore = () => {
 
   return (
     <BaseCard
-      label={t("Clash Core")}
+      label={t('Clash Core')}
       loading={loading.mask}
       labelChildren={<span>{version}</span>}
     >
@@ -152,10 +152,10 @@ export const SettingClashCore = () => {
             <motion.div
               key={index}
               initial={false}
-              animate={show ? "open" : "closed"}
+              animate={show ? 'open' : 'closed'}
               variants={{
                 open: {
-                  height: "auto",
+                  height: 'auto',
                   opacity: 1,
                   scale: 1,
                 },
@@ -180,8 +180,8 @@ export const SettingClashCore = () => {
           sx={{
             pl: 0,
             pr: 0,
-            alignItems: "center",
-            justifyContent: "space-between",
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}
         >
           <Box display="flex" gap={1}>
@@ -190,7 +190,7 @@ export const SettingClashCore = () => {
               loading={loading.restart}
               onClick={handleRestart}
             >
-              {t("Restart")}
+              {t('Restart')}
             </LoadingButton>
 
             <LoadingButton
@@ -198,7 +198,7 @@ export const SettingClashCore = () => {
               variant="contained"
               onClick={handleCheckUpdates}
             >
-              {t("Check Updates")}
+              {t('Check Updates')}
             </LoadingButton>
           </Box>
 

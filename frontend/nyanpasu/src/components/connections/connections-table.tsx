@@ -1,25 +1,25 @@
-import { useLockFn } from "ahooks";
-import dayjs from "dayjs";
+import { useLockFn } from 'ahooks';
+import dayjs from 'dayjs';
 import {
   MaterialReactTable,
   useMaterialReactTable,
   type MRT_ColumnDef,
-} from "material-react-table";
-import { useMemo, useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { containsSearchTerm } from "@/utils";
-import parseTraffic from "@/utils/parse-traffic";
-import Cancel from "@mui/icons-material/Cancel";
-import { IconButton } from "@mui/material";
-import { Connection, useClash, useClashWS } from "@nyanpasu/interface";
-import ContentDisplay from "../base/content-display";
+} from 'material-react-table';
+import { useMemo, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+import { containsSearchTerm } from '@/utils';
+import parseTraffic from '@/utils/parse-traffic';
+import Cancel from '@mui/icons-material/Cancel';
+import { IconButton } from '@mui/material';
+import { Connection, useClash, useClashWS } from '@nyanpasu/interface';
+import ContentDisplay from '../base/content-display';
 
 export type TableConnection = Connection.Item & {
   downloadSpeed?: number;
   uploadSpeed?: number;
 };
 
-export interface TableMessage extends Omit<Connection.Response, "connections"> {
+export interface TableMessage extends Omit<Connection.Response, 'connections'> {
   connections: TableConnection[];
 }
 
@@ -80,7 +80,7 @@ export const ConnectionsTable = ({ searchTerm }: { searchTerm?: string }) => {
 
   const columns: MRT_ColumnDef<TableConnection>[] = [
     {
-      header: t("Actions"),
+      header: t('Actions'),
       size: 80,
       enableSorting: false,
       enableGlobalFilter: false,
@@ -97,67 +97,67 @@ export const ConnectionsTable = ({ searchTerm }: { searchTerm?: string }) => {
       ),
     },
     {
-      header: t("Host"),
+      header: t('Host'),
       size: 240,
       accessorFn: ({ metadata }) => metadata.host || metadata.destinationIP,
     },
     {
-      header: t("Process"),
+      header: t('Process'),
       size: 140,
       accessorFn: ({ metadata }) => metadata.process,
     },
     {
-      header: t("Download"),
+      header: t('Download'),
       size: 88,
-      accessorFn: ({ download }) => parseTraffic(download).join(" "),
+      accessorFn: ({ download }) => parseTraffic(download).join(' '),
     },
     {
-      header: t("Upload"),
+      header: t('Upload'),
       size: 88,
-      accessorFn: ({ upload }) => parseTraffic(upload).join(" "),
+      accessorFn: ({ upload }) => parseTraffic(upload).join(' '),
     },
     {
-      header: t("DL Speed"),
+      header: t('DL Speed'),
       size: 88,
       accessorFn: ({ downloadSpeed }) =>
-        parseTraffic(downloadSpeed).join(" ") + "/s",
+        parseTraffic(downloadSpeed).join(' ') + '/s',
     },
     {
-      header: t("UL Speed"),
+      header: t('UL Speed'),
       size: 88,
       accessorFn: ({ uploadSpeed }) =>
-        parseTraffic(uploadSpeed).join(" ") + "/s",
+        parseTraffic(uploadSpeed).join(' ') + '/s',
     },
     {
-      header: t("Chains"),
+      header: t('Chains'),
       size: 360,
-      accessorFn: ({ chains }) => [...chains].reverse().join(" / "),
+      accessorFn: ({ chains }) => [...chains].reverse().join(' / '),
     },
     {
-      header: "Rule",
+      header: 'Rule',
       size: 200,
       accessorFn: ({ rule, rulePayload }) =>
         rulePayload ? `${rule} (${rulePayload})` : rule,
     },
     {
-      header: t("Time"),
+      header: t('Time'),
       size: 120,
       accessorFn: ({ start }) => dayjs(start).fromNow(),
     },
     {
-      header: "Source",
+      header: 'Source',
       size: 200,
       accessorFn: ({ metadata: { sourceIP, sourcePort } }) =>
         `${sourceIP}:${sourcePort}`,
     },
     {
-      header: t("Destination"),
+      header: t('Destination'),
       size: 200,
       accessorFn: ({ metadata: { destinationIP, destinationPort } }) =>
         `${destinationIP}:${destinationPort}`,
     },
     {
-      header: t("Type"),
+      header: t('Type'),
       size: 160,
       accessorFn: ({ metadata }) => `${metadata.type} (${metadata.network})`,
     },
@@ -167,7 +167,7 @@ export const ConnectionsTable = ({ searchTerm }: { searchTerm?: string }) => {
     columns,
     data: connectionsMessage?.connections ?? [],
     initialState: {
-      density: "compact",
+      density: 'compact',
     },
     defaultDisplayColumn: {
       enableResizing: true,
@@ -180,8 +180,8 @@ export const ConnectionsTable = ({ searchTerm }: { searchTerm?: string }) => {
     enableGlobalFilterModes: true,
     enableColumnPinning: true,
     muiTableContainerProps: {
-      sx: { minHeight: "100%" },
-      className: "!absolute !h-full !w-full",
+      sx: { minHeight: '100%' },
+      className: '!absolute !h-full !w-full',
     },
     enableRowVirtualization: true,
     enableColumnVirtualization: true,
@@ -191,12 +191,12 @@ export const ConnectionsTable = ({ searchTerm }: { searchTerm?: string }) => {
 
   return connectionsMessage?.connections.length ? (
     <MaterialReactTable table={table} />
-  ) : (
+      ) : (
     <ContentDisplay
       className="!absolute !h-full !w-full"
       message="No Connection"
     />
-  );
+      );
 };
 
 export default ConnectionsTable;

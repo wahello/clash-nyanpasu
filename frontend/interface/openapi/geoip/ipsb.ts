@@ -1,5 +1,5 @@
-import { ofetch } from "ofetch";
-import useSWR from "swr";
+import { ofetch } from 'ofetch';
+import useSWR from 'swr';
 
 interface IPSBResponse {
   organization: string;
@@ -18,7 +18,7 @@ interface IPSBResponse {
 
 export const useIPSB = () => {
   return useSWR(
-    "https://api.ip.sb/geoip",
-    async () => await ofetch<IPSBResponse>("https://api.ip.sb/geoip"),
+    'https://api.ip.sb/geoip',
+    async () => await ofetch<IPSBResponse>('https://api.ip.sb/geoip')
   );
 };

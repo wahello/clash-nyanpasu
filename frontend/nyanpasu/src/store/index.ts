@@ -1,6 +1,6 @@
-import { atom } from "jotai";
-import { SortType } from "@/components/proxies/utils";
-import { LogMessage } from "@nyanpasu/interface";
+import { atom } from 'jotai';
+import { SortType } from '@/components/proxies/utils';
+import { LogMessage } from '@nyanpasu/interface';
 
 const atomWithLocalStorage = <T>(key: string, initialValue: T) => {
   const getInitialValue = (): T => {
@@ -15,7 +15,7 @@ const atomWithLocalStorage = <T>(key: string, initialValue: T) => {
     (get) => get(baseAtom),
     (get, set, update: T | ((prev: T) => T)) => {
       const nextValue =
-        typeof update === "function"
+        typeof update === 'function'
           ? (update as (prev: T) => T)(get(baseAtom))
           : update;
 
@@ -30,27 +30,27 @@ const atomWithLocalStorage = <T>(key: string, initialValue: T) => {
 
 export const proxyGroupAtom = atomWithLocalStorage<{
   selector: number | null;
-}>("proxyGroupAtom", {
+}>('proxyGroupAtom', {
   selector: 0,
 });
 
 export const proxyGroupSortAtom = atomWithLocalStorage<SortType>(
-  "proxyGroupSortAtom",
+  'proxyGroupSortAtom',
   SortType.Default,
 );
 
-export const themeMode = atomWithLocalStorage<"light" | "dark">(
-  "themeMode",
-  "light",
+export const themeMode = atomWithLocalStorage<'light' | 'dark'>(
+  'themeMode',
+  'light'
 );
 
 export const atomLogData = atomWithLocalStorage<LogMessage[]>(
-  "atomLogData",
+  'atomLogData',
   [],
 );
 
 export const atomEnableLog = atomWithLocalStorage<boolean>(
-  "atomEnableLog",
+  'atomEnableLog',
   true,
 );
 
@@ -61,11 +61,11 @@ export const atomLoadingCache = atom<Record<string, boolean>>({});
 export const atomUpdateState = atom<boolean>(false);
 
 interface IConnectionSetting {
-  layout: "table" | "list";
+  layout: 'table' | 'list';
 }
 
 export const atomConnectionSetting = atom<IConnectionSetting>({
-  layout: "table",
+  layout: 'table',
 });
 
 // export const themeSchemeAtom = atom<MDYTheme["schemes"] | null>(null);

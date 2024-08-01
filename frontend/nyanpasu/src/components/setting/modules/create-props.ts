@@ -1,6 +1,6 @@
-import { SwitchProps } from "@mui/material/Switch/Switch";
-import { Clash, useClash, useNyanpasu, VergeConfig } from "@nyanpasu/interface";
-import { MenuItemProps } from "@nyanpasu/ui";
+import { SwitchProps } from '@mui/material/Switch/Switch';
+import { Clash, useClash, useNyanpasu, VergeConfig } from '@nyanpasu/interface';
+import { MenuItemProps } from '@nyanpasu/ui';
 
 type OptionValue = string | number | boolean;
 
@@ -55,7 +55,7 @@ export const clash = {
   createMenuProps: (
     propName: keyof Clash.Config,
     { options, fallbackSelect }: CreateMenuPropsOptions,
-  ): Omit<MenuItemProps, "label"> => {
+  ): Omit<MenuItemProps, 'label'> => {
     const { getConfigs, setConfigs } = useClash();
 
     return {
@@ -84,7 +84,7 @@ export const nyanpasu = {
   createBooleanProps: (propName: keyof VergeConfig): SwitchProps => {
     const { nyanpasuConfig, setNyanpasuConfig } = useNyanpasu();
 
-    if (typeof nyanpasuConfig?.[propName] !== "boolean") {
+    if (typeof nyanpasuConfig?.[propName] !== 'boolean') {
       throw new Error(`Property ${propName} is not a boolean type`);
     }
 

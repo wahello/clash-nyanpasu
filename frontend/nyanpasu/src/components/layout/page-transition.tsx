@@ -1,34 +1,34 @@
-import { AnimatePresence, motion, Variant } from "framer-motion";
-import { useLocation, useOutlet } from "react-router-dom";
-import { classNames } from "@/utils";
-import { useNyanpasu } from "@nyanpasu/interface";
+import { AnimatePresence, motion, Variant } from 'framer-motion';
+import { useLocation, useOutlet } from 'react-router-dom';
+import { classNames } from '@/utils';
+import { useNyanpasu } from '@nyanpasu/interface';
 
-type PageVariantKey = "initial" | "visible" | "hidden";
+type PageVariantKey = 'initial' | 'visible' | 'hidden';
 
 type PageVariant = {
   [key in PageVariantKey]: Variant;
 };
 
 const commonTransition = {
-  type: "spring",
+  type: 'spring',
   bounce: 0,
   duration: 0.35,
 };
 
 export const pageTransitionVariants: { [name: string]: PageVariant } = {
   blur: {
-    initial: { opacity: 0, filter: "blur(10px)" },
-    visible: { opacity: 1, filter: "blur(0px)" },
-    hidden: { opacity: 0, filter: "blur(10px)" },
+    initial: { opacity: 0, filter: 'blur(10px)' },
+    visible: { opacity: 1, filter: 'blur(0px)' },
+    hidden: { opacity: 0, filter: 'blur(10px)' },
   },
   slide: {
     initial: {
-      translateY: "30%",
+      translateY: '30%',
       opacity: 0,
       scale: 0.95,
     },
     visible: {
-      translateY: "0%",
+      translateY: '0%',
       opacity: 1,
       scale: 1,
       transition: commonTransition,
@@ -60,7 +60,7 @@ export default function PageTransition({ className }: { className?: string }) {
   return (
     <AnimatePresence mode="popLayout" initial={false}>
       <motion.div
-        className={classNames("page-transition", className)}
+        className={classNames('page-transition', className)}
         key={hashkey}
         layout
         layoutId={hashkey}

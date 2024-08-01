@@ -1,10 +1,10 @@
-import { Clash } from "./clash";
+import { Clash } from './clash';
 
 export interface VergeConfig {
-  app_log_level?: "trace" | "debug" | "info" | "warn" | "error" | string;
+  app_log_level?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | string;
   language?: string;
-  clash_core?: "mihomo" | "mihomo-alpha" | "clash-rs" | "clash";
-  theme_mode?: "light" | "dark" | "system";
+  clash_core?: 'mihomo' | 'mihomo-alpha' | 'clash-rs' | 'clash';
+  theme_mode?: 'light' | 'dark' | 'system';
   theme_blur?: boolean;
   traffic_graph?: boolean;
   enable_memory_usage?: boolean;
@@ -43,7 +43,7 @@ export interface VergeConfig {
   proxy_layout_column?: number;
   clash_tray_selector?: boolean;
   clash_strategy?: {
-    external_controller_port_strategy: "fixed" | "random" | "allow_fallback";
+    external_controller_port_strategy: 'fixed' | 'random' | 'allow_fallback';
   };
 }
 
@@ -56,14 +56,14 @@ export interface ClashConfig {
   port: number;
   mode: string;
   ipv6: boolean;
-  "socket-port": number;
-  "allow-lan": boolean;
-  "log-level": string;
-  "mixed-port": number;
-  "redir-port": number;
-  "socks-port": number;
-  "tproxy-port": number;
-  "external-controller": string;
+  'socket-port': number;
+  'allow-lan': boolean;
+  'log-level': string;
+  'mixed-port': number;
+  'redir-port': number;
+  'socks-port': number;
+  'tproxy-port': number;
+  'external-controller': string;
   secret: string;
 }
 
@@ -75,11 +75,11 @@ export namespace Profile {
     items?: Item[];
   }
 
-  export type ScriptType = "javascript" | "lua";
+  export type ScriptType = 'javascript' | 'lua';
 
   export interface Item {
     uid: string;
-    type?: "local" | "remote" | "merge" | { script: ScriptType };
+    type?: 'local' | 'remote' | 'merge' | { script: ScriptType };
     name?: string;
     desc?: string;
     file?: string;

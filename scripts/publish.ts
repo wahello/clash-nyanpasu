@@ -1,33 +1,33 @@
-import path from "node:path";
-import fs from "fs-extra";
-import packageJson from "../package.json";
-import { cwd, TAURI_APP_DIR } from "./utils/env";
+import path from 'node:path';
+import fs from 'fs-extra';
+import packageJson from '../package.json';
+import { cwd, TAURI_APP_DIR } from './utils/env';
 
 // import { consola } from "./utils/logger";
 
-const TAURI_APP_CONF_PATH = path.join(TAURI_APP_DIR, "tauri.conf.json");
+const TAURI_APP_CONF_PATH = path.join(TAURI_APP_DIR, 'tauri.conf.json');
 const TAURI_NIGHTLY_APP_CONF_PATH = path.join(
   TAURI_APP_DIR,
-  "overrides/nightly.conf.json",
+  'overrides/nightly.conf.json'
 );
-const PACKAGE_JSON_PATH = path.join(cwd, "package.json");
+const PACKAGE_JSON_PATH = path.join(cwd, 'package.json');
 
 // publish
 async function resolvePublish() {
-  const flag = process.argv[2] ?? "patch";
+  const flag = process.argv[2] ?? 'patch';
   const tauriJson = await fs.readJSON(TAURI_APP_CONF_PATH);
   const tauriNightlyJson = await fs.readJSON(TAURI_NIGHTLY_APP_CONF_PATH);
 
-  let [a, b, c] = packageJson.version.split(".").map(Number);
+  let [a, b, c] = packageJson.version.split('.').map(Number);
 
-  if (flag === "major") {
+  if (flag === 'major') {
     a += 1;
     b = 0;
     c = 0;
-  } else if (flag === "minor") {
+  } else if (flag === 'minor') {
     b += 1;
     c = 0;
-  } else if (flag === "patch") {
+  } else if (flag === 'patch') {
     c += 1;
   } else throw new Error(`invalid flag "${flag}"`);
 

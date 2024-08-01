@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { classNames } from "@/utils";
-import { Public } from "@mui/icons-material";
+import { ReactNode } from 'react';
+import { classNames } from '@/utils';
+import { Public } from '@mui/icons-material';
 
 export interface ContentDisplayProps {
   className?: string;
@@ -15,14 +15,12 @@ export const ContentDisplay = ({
 }: ContentDisplayProps) => (
   <div
     className={classNames(
-      "flex h-full w-full items-center justify-center",
+      'flex h-full w-full items-center justify-center',
       className,
     )}
   >
     <div className="flex flex-col items-center gap-4">
-      {children ? (
-        children
-      ) : (
+      {children || (
         <>
           <Public className="!size-16" />
 

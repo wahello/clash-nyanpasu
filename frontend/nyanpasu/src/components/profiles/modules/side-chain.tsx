@@ -1,6 +1,6 @@
-import { useLockFn } from "ahooks";
-import { memo } from "react";
-import { Add, Edit } from "@mui/icons-material";
+import { useLockFn } from 'ahooks';
+import { memo } from 'react';
+import { Add, Edit } from '@mui/icons-material';
 import {
   alpha,
   IconButton,
@@ -8,9 +8,9 @@ import {
   ListItemIcon,
   ListItemText,
   useTheme,
-} from "@mui/material";
-import { Profile, useClash } from "@nyanpasu/interface";
-import { filterProfiles } from "../utils";
+} from '@mui/material';
+import { Profile, useClash } from '@nyanpasu/interface';
+import { filterProfiles } from '../utils';
 
 const ChainItem = memo(function ChainItem({
   name,
@@ -36,7 +36,7 @@ const ChainItem = memo(function ChainItem({
           : alpha(palette.secondary.main, 0.1),
         borderRadius: 4,
 
-        "&:hover": {
+        '&:hover': {
           backgroundColor: selected
             ? alpha(palette.primary.main, 0.5)
             : undefined,

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import getSystem from "@/utils/get-system";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { open } from "@tauri-apps/api/dialog";
-import { readTextFile } from "@tauri-apps/api/fs";
+import { useState } from 'react';
+import getSystem from '@/utils/get-system';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { open } from '@tauri-apps/api/dialog';
+import { readTextFile } from '@tauri-apps/api/fs';
 
-const isWin = getSystem() === "windows";
+const isWin = getSystem() === 'windows';
 
 export interface ReadProfileProps {
   onSelected: (content: string) => void;
@@ -13,7 +13,7 @@ export interface ReadProfileProps {
 export const ReadProfile = ({ onSelected }: ReadProfileProps) => {
   const [loading, setLoading] = useState(false);
 
-  const [label, setLabel] = useState("");
+  const [label, setLabel] = useState('');
 
   const handleSelectFile = async () => {
     try {
@@ -24,8 +24,8 @@ export const ReadProfile = ({ onSelected }: ReadProfileProps) => {
         multiple: false,
         filters: [
           {
-            name: "profile",
-            extensions: ["yaml"],
+            name: 'profile',
+            extensions: ['yaml'],
           },
         ],
       });
@@ -38,9 +38,9 @@ export const ReadProfile = ({ onSelected }: ReadProfileProps) => {
       onSelected(await readTextFile(selected));
 
       if (isWin) {
-        setLabel(selected.split("\\").at(-1) as string);
+        setLabel(selected.split('\\').at(-1) as string);
       } else {
-        setLabel(selected.split("/").at(-1) as string);
+        setLabel(selected.split('/').at(-1) as string);
       }
     } finally {
       setLoading(false);
@@ -52,9 +52,9 @@ export const ReadProfile = ({ onSelected }: ReadProfileProps) => {
       variant="contained"
       loading={loading}
       onClick={handleSelectFile}
-      color={label ? "success" : "primary"}
+      color={label ? 'success' : 'primary'}
     >
-      {label || "Select File"}
+      {label || 'Select File'}
     </LoadingButton>
   );
 };

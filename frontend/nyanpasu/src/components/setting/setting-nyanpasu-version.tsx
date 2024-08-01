@@ -1,10 +1,10 @@
-import { version } from "~/package.json";
-import { useLockFn } from "ahooks";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import LogoSvg from "@/assets/image/logo.svg?react";
-import { useMessage } from "@/hooks/use-notification";
-import LoadingButton from "@mui/lab/LoadingButton";
+import { version } from '~/package.json';
+import { useLockFn } from 'ahooks';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import LogoSvg from '@/assets/image/logo.svg?react';
+import { useMessage } from '@/hooks/use-notification';
+import LoadingButton from '@mui/lab/LoadingButton';
 import {
   alpha,
   Box,
@@ -13,11 +13,11 @@ import {
   Paper,
   Typography,
   useTheme,
-} from "@mui/material";
-import { useNyanpasu } from "@nyanpasu/interface";
-import { BaseCard } from "@nyanpasu/ui";
-import { checkUpdate } from "@tauri-apps/api/updater";
-import { LabelSwitch } from "./modules/clash-field";
+} from '@mui/material';
+import { useNyanpasu } from '@nyanpasu/interface';
+import { BaseCard } from '@nyanpasu/ui';
+import { checkUpdate } from '@tauri-apps/api/updater';
+import { LabelSwitch } from './modules/clash-field';
 
 const AutoCheckUpdate = () => {
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ const AutoCheckUpdate = () => {
 
   return (
     <LabelSwitch
-      label={t("Auto Check Updates")}
+      label={t('Auto Check Updates')}
       checked={nyanpasuConfig?.enable_auto_check_update}
       onChange={() =>
         setNyanpasuConfig({
@@ -53,22 +53,22 @@ export const SettingNyanpasuVersion = () => {
       const info = await checkUpdate();
 
       if (!info?.shouldUpdate) {
-        useMessage(t("No update available."), {
-          title: t("Info"),
-          type: "info",
+        useMessage(t('No update available.'), {
+          title: t('Info'),
+          type: 'info',
         });
       } else {
         useMessage(`New Version: ${info.manifest?.version}`, {
-          title: t("New Version"),
-          type: "info",
+          title: t('New Version'),
+          type: 'info',
         });
       }
     } catch (e) {
       useMessage(
-        "Update check failed. Please verify your network connection.",
+        'Update check failed. Please verify your network connection.',
         {
-          title: t("Error"),
-          type: "error",
+          title: t('Error'),
+          type: 'error',
         },
       );
     } finally {
@@ -77,7 +77,7 @@ export const SettingNyanpasuVersion = () => {
   });
 
   return (
-    <BaseCard label={t("Nyanpasu Version")}>
+    <BaseCard label={t('Nyanpasu Version')}>
       <List disablePadding>
         <ListItem sx={{ pl: 0, pr: 0 }}>
           <Paper
@@ -87,7 +87,7 @@ export const SettingNyanpasuVersion = () => {
               padding: 2,
               backgroundColor: alpha(palette.primary.main, 0.1),
               borderRadius: 6,
-              width: "100%",
+              width: '100%',
             }}
           >
             <Box
@@ -99,7 +99,7 @@ export const SettingNyanpasuVersion = () => {
               <LogoSvg className="h-32 w-32" />
 
               <Typography fontWeight={700} noWrap>
-                {"Clash Nyanpasu~(∠・ω< )⌒☆"}​
+                {'Clash Nyanpasu~(∠・ω< )⌒☆'}
               </Typography>
 
               <Typography>
@@ -119,9 +119,9 @@ export const SettingNyanpasuVersion = () => {
             size="large"
             loading={loading}
             onClick={onCheckUpdate}
-            sx={{ width: "100%" }}
+            sx={{ width: '100%' }}
           >
-            {t("Check for Updates")}
+            {t('Check for Updates')}
           </LoadingButton>
         </ListItem>
       </List>

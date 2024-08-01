@@ -1,17 +1,17 @@
-import { useAtom } from "jotai";
-import { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
-import ContentDisplay from "@/components/base/content-display";
+import { useAtom } from 'jotai';
+import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import ContentDisplay from '@/components/base/content-display';
 import {
   DelayButton,
   GroupList,
   NodeList,
   NodeListRef,
-} from "@/components/proxies";
-import ProxyGroupName from "@/components/proxies/proxy-group-name";
-import ScrollCurrentNode from "@/components/proxies/scroll-current-node";
-import SortSelector from "@/components/proxies/sort-selector";
-import { proxyGroupAtom } from "@/store";
+} from '@/components/proxies';
+import ProxyGroupName from '@/components/proxies/proxy-group-name';
+import ScrollCurrentNode from '@/components/proxies/scroll-current-node';
+import SortSelector from '@/components/proxies/sort-selector';
+import { proxyGroupAtom } from '@/store';
 import {
   alpha,
   Box,
@@ -19,9 +19,9 @@ import {
   ButtonGroup,
   TextField,
   useTheme,
-} from "@mui/material";
-import { Clash, useClashCore, useNyanpasu } from "@nyanpasu/interface";
-import { SidePage } from "@nyanpasu/ui";
+} from '@mui/material';
+import { Clash, useClashCore, useNyanpasu } from '@nyanpasu/interface';
+import { SidePage } from '@nyanpasu/ui';
 
 export default function ProxyPage() {
   const { t } = useTranslation();
@@ -68,9 +68,9 @@ export default function ProxyPage() {
           {Object.entries(getCurrentMode).map(([key, value], index) => (
             <Button
               key={index}
-              variant={value ? "contained" : "outlined"}
+              variant={value ? 'contained' : 'outlined'}
               onClick={() => handleSwitch(key)}
-              sx={{ textTransform: "capitalize" }}
+              sx={{ textTransform: 'capitalize' }}
             >
               {t(key)}
             </Button>
@@ -87,7 +87,7 @@ export default function ProxyPage() {
         fullWidth
         autoComplete="off"
         spellCheck="false"
-        placeholder={t("Filter conditions")}
+        placeholder={t('Filter conditions')}
         sx={{ input: { py: 1, px: 2 } }}
         InputProps={{
           sx: {
@@ -101,7 +101,7 @@ export default function ProxyPage() {
 
   return (
     <SidePage
-      title={t("Proxy Groups")}
+      title={t('Proxy Groups')}
       header={<Header />}
       sideBar={<SideBar />}
       side={hasProxies && getCurrentMode.rule && <GroupList />}
@@ -128,18 +128,18 @@ export default function ProxyPage() {
       noChildrenScroll
     >
       {!getCurrentMode.direct ? (
-        hasProxies ? (
+            hasProxies ? (
           <>
             <NodeList ref={nodeListRef} />
 
             <DelayButton onClick={handleDelayClick} />
           </>
-        ) : (
+                ) : (
           <ContentDisplay message="No Proxy" />
-        )
-      ) : (
+                )
+          ) : (
         <ContentDisplay message="Direct Mode" />
-      )}
+          )}
     </SidePage>
   );
 }

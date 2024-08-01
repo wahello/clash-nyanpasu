@@ -1,5 +1,5 @@
-import { FallbackProps } from "react-error-boundary";
-import { Outlet } from "react-router-dom";
+import { FallbackProps } from 'react-error-boundary';
+import { Outlet } from 'react-router-dom';
 
 export default function Layout() {
   return <Outlet />;
@@ -7,7 +7,7 @@ export default function Layout() {
 
 export const Catch = ({ error }: FallbackProps) => {
   return (
-    <div style={{ backgroundColor: "#fff" }}>
+    <div style={{ backgroundColor: '#fff' }}>
       <h1>Oops!</h1>
       <p>Something went wrong... Caught at _layout error boundary.</p>
       <pre>{error.message}</pre>

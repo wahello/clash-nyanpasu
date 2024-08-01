@@ -1,10 +1,10 @@
-import { Octokit } from "octokit";
-import { ProxyAgent, fetch as undiciFetch } from "undici";
-import { HTTP_PROXY } from "./";
+import { Octokit } from 'octokit';
+import { ProxyAgent, fetch as undiciFetch } from 'undici';
+import { HTTP_PROXY } from './';
 
 const BASE_OPTIONS = {
-  owner: "LibNyanpasu",
-  repo: "clash-nyanpasu",
+  owner: 'LibNyanpasu',
+  repo: 'clash-nyanpasu',
 };
 
 export const fetcher = (

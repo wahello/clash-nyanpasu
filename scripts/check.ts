@@ -1,16 +1,16 @@
-import os from "node:os";
-import { printNyanpasu } from "./utils";
-import { archCheck } from "./utils/arch-check";
-import { SIDECAR_HOST } from "./utils/consts";
-import { colorize, consola } from "./utils/logger";
-import { Resolve } from "./utils/resolve";
+import os from 'node:os';
+import { printNyanpasu } from './utils';
+import { archCheck } from './utils/arch-check';
+import { SIDECAR_HOST } from './utils/consts';
+import { colorize, consola } from './utils/logger';
+import { Resolve } from './utils/resolve';
 
 // force download
-const FORCE = process.argv.includes("--force");
+const FORCE = process.argv.includes('--force');
 
 // cross platform build using
-const ARCH = process.argv.includes("--arch")
-  ? process.argv[process.argv.indexOf("--arch") + 1]
+const ARCH = process.argv.includes('--arch')
+  ? process.argv[process.argv.indexOf('--arch') + 1]
   : undefined;
 
 // cross platform build support
@@ -22,7 +22,7 @@ if (!SIDECAR_HOST) {
 
 const platform = process.platform;
 
-const arch = ARCH ? ARCH : process.arch;
+const arch = ARCH || process.arch;
 
 archCheck(platform, arch);
 
@@ -39,21 +39,21 @@ const tasks: {
   retry: number;
   winOnly?: boolean;
 }[] = [
-  { name: "clash", func: () => resolve.clash(), retry: 5 },
-  { name: "mihomo", func: () => resolve.clashMeta(), retry: 5 },
-  { name: "mihomo-alpha", func: () => resolve.clashMetaAlpha(), retry: 5 },
-  { name: "clash-rs", func: () => resolve.clashRust(), retry: 5 },
-  { name: "wintun", func: () => resolve.wintun(), retry: 5, winOnly: true },
+  { name: 'clash', func: () => resolve.clash(), retry: 5 },
+  { name: 'mihomo', func: () => resolve.clashMeta(), retry: 5 },
+  { name: 'mihomo-alpha', func: () => resolve.clashMetaAlpha(), retry: 5 },
+  { name: 'clash-rs', func: () => resolve.clashRust(), retry: 5 },
+  { name: 'wintun', func: () => resolve.wintun(), retry: 5, winOnly: true },
   {
-    name: "nyanpasu-service",
+    name: 'nyanpasu-service',
     func: () => resolve.service(),
     retry: 5,
   },
-  { name: "mmdb", func: () => resolve.mmdb(), retry: 5 },
-  { name: "geoip", func: () => resolve.geoip(), retry: 5 },
-  { name: "geosite", func: () => resolve.geosite(), retry: 5 },
+  { name: 'mmdb', func: () => resolve.mmdb(), retry: 5 },
+  { name: 'geoip', func: () => resolve.geoip(), retry: 5 },
+  { name: 'geosite', func: () => resolve.geosite(), retry: 5 },
   {
-    name: "enableLoopback",
+    name: 'enableLoopback',
     func: () => resolve.enableLoopback(),
     retry: 5,
     winOnly: true,
@@ -65,7 +65,7 @@ async function runTask() {
 
   if (!task) return;
 
-  if (task.winOnly && process.platform !== "win32") return runTask();
+  if (task.winOnly && process.platform !== 'win32') return runTask();
 
   for (let i = 0; i < task.retry; i++) {
     try {
@@ -84,7 +84,7 @@ async function runTask() {
   return runTask();
 }
 
-consola.start("start check and download resources...");
+consola.start('start check and download resources...');
 
 const jobs = new Array(Math.ceil(os.cpus.length / 2) || 2)
   .fill(0)
@@ -93,15 +93,15 @@ const jobs = new Array(Math.ceil(os.cpus.length / 2) || 2)
 Promise.all(jobs).then(() => {
   printNyanpasu();
 
-  consola.success("all resources download finished\n");
+  consola.success('all resources download finished\n');
 
   const commands = [
-    "pnpm dev - development with react dev tools",
-    "pnpm dev:diff - deadlock development with react dev tools (recommend)",
-    "pnpm tauri:diff - deadlock development",
+    'pnpm dev - development with react dev tools',
+    'pnpm dev:diff - deadlock development with react dev tools (recommend)',
+    'pnpm tauri:diff - deadlock development',
   ];
 
-  consola.log("  next command:\n");
+  consola.log('  next command:\n');
 
   commands.forEach((text) => {
     consola.log(`    ${text}`);

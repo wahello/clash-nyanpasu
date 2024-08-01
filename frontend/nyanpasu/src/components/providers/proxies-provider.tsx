@@ -1,14 +1,14 @@
-import { useLockFn } from "ahooks";
-import dayjs from "dayjs";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useMessage } from "@/hooks/use-notification";
-import parseTraffic from "@/utils/parse-traffic";
-import { Refresh } from "@mui/icons-material";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { Chip, LinearProgress, Paper, Tooltip } from "@mui/material";
-import { ProviderItem, useClashCore } from "@nyanpasu/interface";
-import ProxiesProviderTraffic from "./proxies-provider-traffic";
+import { useLockFn } from 'ahooks';
+import dayjs from 'dayjs';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useMessage } from '@/hooks/use-notification';
+import parseTraffic from '@/utils/parse-traffic';
+import { Refresh } from '@mui/icons-material';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { Chip, LinearProgress, Paper, Tooltip } from '@mui/material';
+import { ProviderItem, useClashCore } from '@nyanpasu/interface';
+import ProxiesProviderTraffic from './proxies-provider-traffic';
 
 export interface ProxiesProviderProps {
   provider: ProviderItem;
@@ -28,8 +28,8 @@ export const ProxiesProvider = ({ provider }: ProxiesProviderProps) => {
       await updateProxiesProviders(provider.name);
     } catch (e) {
       useMessage(`Update ${provider.name} failed.\n${String(e)}`, {
-        type: "error",
-        title: t("Error"),
+        type: 'error',
+        title: t('Error'),
       });
     } finally {
       setLoading(false);
@@ -53,7 +53,7 @@ export const ProxiesProvider = ({ provider }: ProxiesProviderProps) => {
         </div>
 
         <div className="text-right text-sm">
-          {t("Last Update", {
+          {t('Last Update', {
             fromNow: dayjs(provider.updatedAt).fromNow(),
           })}
         </div>
@@ -66,7 +66,7 @@ export const ProxiesProvider = ({ provider }: ProxiesProviderProps) => {
       <div className="flex items-center justify-between">
         <Chip
           className="truncate font-bold"
-          label={t("Proxy Set proxies", {
+          label={t('Proxy Set proxies', {
             rule: provider.proxies.length,
           })}
         />

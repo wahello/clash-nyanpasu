@@ -8,7 +8,7 @@ import {
   SettingsEthernet,
   SvgIconComponent,
   Terminal,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
 const routes: { [key: string]: SvgIconComponent } = {
   dashboard: Dashboard,

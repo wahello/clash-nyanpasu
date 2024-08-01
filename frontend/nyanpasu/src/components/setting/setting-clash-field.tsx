@@ -1,11 +1,11 @@
-import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import CLASH_FIELD from "@/assets/json/clash-field.json";
-import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { useClash, useNyanpasu } from "@nyanpasu/interface";
-import { BaseCard, BaseDialog } from "@nyanpasu/ui";
-import { ClashFieldItem, LabelSwitch } from "./modules/clash-field";
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import CLASH_FIELD from '@/assets/json/clash-field.json';
+import { Box, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
+import { useClash, useNyanpasu } from '@nyanpasu/interface';
+import { BaseCard, BaseDialog } from '@nyanpasu/ui';
+import { ClashFieldItem, LabelSwitch } from './modules/clash-field';
 
 const FieldsControl = ({
   label,
@@ -21,7 +21,7 @@ const FieldsControl = ({
   const [open, setOpen] = useState(false);
 
   // Nyanpasu Control Fields object key
-  const disabled = label === "default" || label === "handle";
+  const disabled = label === 'default' || label === 'handle';
 
   const showFields: string[] = disabled
     ? Object.entries(fields).map(([key]) => key)
@@ -58,7 +58,7 @@ const FieldsControl = ({
         close="Close"
         onClose={() => setOpen(false)}
         divider
-        contentSx={{ overflow: "auto" }}
+        contentSx={{ overflow: 'auto' }}
       >
         <Box display="flex" flexDirection="column" gap={1}>
           {disabled && <Typography>Clash Nyanpasu Control Fields.</Typography>}
@@ -77,7 +77,7 @@ const ClashFieldSwitch = () => {
 
   return (
     <LabelSwitch
-      label={t("Enable Clash Fields Filter")}
+      label={t('Enable Clash Fields Filter')}
       checked={nyanpasuConfig?.enable_clash_fields}
       onChange={() =>
         setNyanpasuConfig({
@@ -130,7 +130,7 @@ export const SettingClashField = () => {
   };
 
   return (
-    <BaseCard label={t("Clash Field")}>
+    <BaseCard label={t('Clash Field')}>
       <Box sx={{ pt: 1, pb: 2 }}>
         <ClashFieldSwitch />
       </Box>

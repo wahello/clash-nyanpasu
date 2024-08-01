@@ -1,6 +1,6 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { memo } from "react";
-import { useNyanpasu } from "@nyanpasu/interface";
+import { AnimatePresence, motion } from 'framer-motion';
+import { memo } from 'react';
+import { useNyanpasu } from '@nyanpasu/interface';
 
 export const ProxyGroupName = memo(function ProxyGroupName({
   name,
@@ -13,7 +13,7 @@ export const ProxyGroupName = memo(function ProxyGroupName({
 
   return disbaleMotion ? (
     <>{name}</>
-  ) : (
+      ) : (
     <AnimatePresence mode="sync" initial={false}>
       <motion.div
         key={`group-name-${name}`}
@@ -25,7 +25,7 @@ export const ProxyGroupName = memo(function ProxyGroupName({
         {name}
       </motion.div>
     </AnimatePresence>
-  );
+      );
 });
 
 export default ProxyGroupName;

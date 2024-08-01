@@ -1,6 +1,6 @@
-import CircularProgress from "@mui/material/CircularProgress";
-import Switch, { SwitchProps } from "@mui/material/Switch";
-import style from "./style.module.scss";
+import CircularProgress from '@mui/material/CircularProgress';
+import Switch, { SwitchProps } from '@mui/material/Switch';
+import style from './style.module.scss';
 
 interface LoadingSwitchProps extends SwitchProps {
   loading?: boolean;
@@ -9,9 +9,9 @@ interface LoadingSwitchProps extends SwitchProps {
 /**
  * @example
  * <LoadingSwitch
-    loading={loading} 
-    onChange={handleChange} 
-    {...switchProps} 
+    loading={loading}
+    onChange={handleChange}
+    {...switchProps}
   />
 *
  * `Support loading status.`
@@ -26,11 +26,11 @@ export const LoadingSwitch = ({
   ...props
 }: LoadingSwitchProps) => {
   return (
-    <div className={style["MDYSwitch-container"]}>
+    <div className={style['MDYSwitch-container']}>
       {loading && (
         <CircularProgress
           className={
-            checked ? style["CircularProgress-checked"] : style.CircularProgress
+            checked ? style['CircularProgress-checked'] : style.CircularProgress
           }
           aria-labelledby={props.id}
           color="inherit"

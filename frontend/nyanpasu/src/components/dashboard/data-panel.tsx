@@ -1,21 +1,21 @@
-import { useInterval } from "ahooks";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import Dataline, { DatalineProps } from "@/components/dashboard/dataline";
+import { useInterval } from 'ahooks';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import Dataline, { DatalineProps } from '@/components/dashboard/dataline';
 import {
   ArrowDownward,
   ArrowUpward,
   MemoryOutlined,
   SettingsEthernet,
-} from "@mui/icons-material";
-import Grid from "@mui/material/Unstable_Grid2";
+} from '@mui/icons-material';
+import Grid from '@mui/material/Unstable_Grid2';
 import {
   Connection,
   Memory,
   Traffic,
   useClashWS,
   useNyanpasu,
-} from "@nyanpasu/interface";
+} from '@nyanpasu/interface';
 
 export const DataPanel = () => {
   const { t } = useTranslation();
@@ -82,28 +82,28 @@ export const DataPanel = () => {
 
   const supportMemory =
     nyanpasuConfig?.clash_core &&
-    ["mihomo", "mihomo-alpha"].includes(nyanpasuConfig?.clash_core);
+    ['mihomo', 'mihomo-alpha'].includes(nyanpasuConfig?.clash_core);
 
   const Datalines: DatalineProps[] = [
     {
       data: traffic.map((item) => item.up),
       icon: ArrowUpward,
-      title: t("Upload Traffic"),
+      title: t('Upload Traffic'),
       total: connection.at(-1)?.uploadTotal,
-      type: "speed",
+      type: 'speed',
     },
     {
       data: traffic.map((item) => item.down),
       icon: ArrowDownward,
-      title: t("Download Traffic"),
+      title: t('Download Traffic'),
       total: connection.at(-1)?.downloadTotal,
-      type: "speed",
+      type: 'speed',
     },
     {
       data: connection.map((item) => item.connections),
       icon: SettingsEthernet,
-      title: t("Active Connections"),
-      type: "raw",
+      title: t('Active Connections'),
+      type: 'raw',
     },
   ];
 
@@ -111,7 +111,7 @@ export const DataPanel = () => {
     Datalines.splice(2, 0, {
       data: memory.map((item) => item.inuse),
       icon: MemoryOutlined,
-      title: t("Memory"),
+      title: t('Memory'),
     });
   }
 

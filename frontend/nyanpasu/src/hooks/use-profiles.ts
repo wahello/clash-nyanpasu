@@ -1,16 +1,16 @@
-import useSWR, { mutate } from "swr";
+import useSWR, { mutate } from 'swr';
 // import { getProxies, updateProxy } from "@/services/api";
-import { updateProxy } from "@/services/api";
+import { updateProxy } from '@/services/api';
 import {
   getProfiles,
   getProxies,
   patchProfile,
   patchProfilesConfig,
-} from "@/services/cmds";
+} from '@/services/cmds';
 
 export const useProfiles = () => {
   const { data: profiles, mutate: mutateProfiles } = useSWR(
-    "getProfiles",
+    'getProfiles',
     getProfiles,
   );
 
@@ -52,7 +52,7 @@ export const useProfiles = () => {
     const { global, groups } = proxiesData;
 
     [global, ...groups].forEach(({ type, name, now }) => {
-      if (!now || type !== "Selector") return;
+      if (!now || type !== 'Selector') return;
       if (selectedMap[name] != null && selectedMap[name] !== now) {
         hasChange = true;
         updateProxy(name, selectedMap[name]);
@@ -61,8 +61,8 @@ export const useProfiles = () => {
     });
 
     if (hasChange) {
-      patchProfile(profileData.current!, { selected: newSelected });
-      mutate("getProxies", getProxies());
+      patchProfile(profileData.current, { selected: newSelected });
+      mutate('getProxies', getProxies());
     }
   };
 

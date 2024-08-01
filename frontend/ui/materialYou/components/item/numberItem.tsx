@@ -1,5 +1,5 @@
-import { ChangeEvent, useMemo, useState } from "react";
-import Done from "@mui/icons-material/Done";
+import { ChangeEvent, useMemo, useState } from 'react';
+import Done from '@mui/icons-material/Done';
 import {
   Box,
   Button,
@@ -7,9 +7,9 @@ import {
   TextField,
   TextFieldProps,
   Typography,
-} from "@mui/material";
-import { Expand } from "../expand";
-import { BaseItem } from "./baseItem";
+} from '@mui/material';
+import { Expand } from '../expand';
+import { BaseItem } from './baseItem';
 
 export interface NumberItemprops {
   label: string;
@@ -64,7 +64,7 @@ export const NumberItem = ({
           size="small"
           variant="outlined"
           sx={{ width: 80 }}
-          inputProps={{ "aria-autocomplete": "none" }}
+          inputProps={{ 'aria-autocomplete': 'none' }}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setInput(Number(e.target.value));
             setChanged(true);

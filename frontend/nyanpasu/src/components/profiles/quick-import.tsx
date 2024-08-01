@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ClearRounded,
   ContentCopyRounded,
   Download,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 import {
   alpha,
   CircularProgress,
@@ -13,16 +13,16 @@ import {
   TextField,
   Tooltip,
   useTheme,
-} from "@mui/material";
-import { useClash } from "@nyanpasu/interface";
-import { readText } from "@tauri-apps/api/clipboard";
+} from '@mui/material';
+import { useClash } from '@nyanpasu/interface';
+import { readText } from '@tauri-apps/api/clipboard';
 
 export const QuickImport = () => {
   const { t } = useTranslation();
 
   const { palette } = useTheme();
 
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState('');
 
   const [loading, setLoading] = useState(false);
 
@@ -44,13 +44,13 @@ export const QuickImport = () => {
     if (url) {
       return (
         <>
-          <Tooltip title={t("Clear")}>
-            <IconButton size="small" onClick={() => setUrl("")}>
+          <Tooltip title={t('Clear')}>
+            <IconButton size="small" onClick={() => setUrl('')}>
               <ClearRounded fontSize="inherit" />
             </IconButton>
           </Tooltip>
 
-          <Tooltip title={t("Download")}>
+          <Tooltip title={t('Download')}>
             <IconButton size="small" onClick={handleImport}>
               <Download fontSize="inherit" />
             </IconButton>
@@ -60,7 +60,7 @@ export const QuickImport = () => {
     }
 
     return (
-      <Tooltip title={t("Paste")}>
+      <Tooltip title={t('Paste')}>
         <IconButton size="small" onClick={onCopyLink}>
           <ContentCopyRounded fontSize="inherit" />
         </IconButton>
@@ -74,7 +74,7 @@ export const QuickImport = () => {
 
       await importProfile(url);
     } finally {
-      setUrl("");
+      setUrl('');
       setLoading(false);
     }
   };
@@ -85,7 +85,7 @@ export const QuickImport = () => {
       backgroundColor: alpha(palette.primary.main, 0.1),
 
       fieldset: {
-        border: "none",
+        border: 'none',
       },
     },
     endAdornment: endAdornment(),
@@ -98,7 +98,7 @@ export const QuickImport = () => {
       autoComplete="off"
       spellCheck="false"
       value={url}
-      placeholder={t("Profile URL")}
+      placeholder={t('Profile URL')}
       onChange={(e) => setUrl(e.target.value)}
       sx={{ input: { py: 1, px: 2 } }}
       InputProps={inputProps}

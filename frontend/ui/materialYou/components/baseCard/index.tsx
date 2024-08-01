@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 import {
   alpha,
   Box,
@@ -8,8 +8,8 @@ import {
   CircularProgress,
   Typography,
   useTheme,
-} from "@mui/material";
-import style from "./style.module.scss";
+} from '@mui/material';
+import style from './style.module.scss';
 
 export const BaseCard = ({
   label,
@@ -25,7 +25,7 @@ export const BaseCard = ({
   const { palette } = useTheme();
 
   return (
-    <Card style={{ position: "relative" }}>
+    <Card style={{ position: 'relative' }}>
       <CardContent>
         {label && (
           <Box
@@ -47,13 +47,13 @@ export const BaseCard = ({
 
       <motion.div
         initial={false}
-        animate={loading ? "loading" : "none"}
+        animate={loading ? 'loading' : 'none'}
         variants={{
-          loading: { opacity: 1, visibility: "visible" },
+          loading: { opacity: 1, visibility: 'visible' },
           none: {
             opacity: 0,
             transitionEnd: {
-              visibility: "hidden",
+              visibility: 'hidden',
             },
           },
         }}

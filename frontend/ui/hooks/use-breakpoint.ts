@@ -1,7 +1,7 @@
-import { useSetState, useThrottleFn } from "ahooks";
-import { useCallback, useEffect, useMemo } from "react";
-import { useTheme } from "@mui/material";
-import { appWindow } from "@tauri-apps/api/window";
+import { useSetState, useThrottleFn } from 'ahooks';
+import { useCallback, useEffect, useMemo } from 'react';
+import { useTheme } from '@mui/material';
+import { appWindow } from '@tauri-apps/api/window';
 
 export const useBreakpoint = (
   columnMapping: { [key: string]: number } = {
@@ -15,7 +15,7 @@ export const useBreakpoint = (
   const { breakpoints } = useTheme();
 
   const [breakpoint, setBreakpoint] = useSetState({
-    key: "sm",
+    key: 'sm',
     column: 1,
   });
 
@@ -43,10 +43,10 @@ export const useBreakpoint = (
         }
       }
 
-      if (breakpoint.key !== "default") {
+      if (breakpoint.key !== 'default') {
         setBreakpoint({
-          column: columnMapping["default"],
-          key: "default",
+          column: columnMapping['default'],
+          key: 'default',
         });
       }
     },

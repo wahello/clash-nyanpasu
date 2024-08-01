@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
-import { alpha, FilledInputProps, TextField, useTheme } from "@mui/material";
+import { useTranslation } from 'react-i18next';
+import { alpha, FilledInputProps, TextField, useTheme } from '@mui/material';
 
 export interface LogFilterProps {
   value: string;
@@ -17,7 +17,7 @@ export const LogFilter = ({ value, onChange }: LogFilterProps) => {
       backgroundColor: alpha(palette.primary.main, 0.1),
 
       fieldset: {
-        border: "none",
+        border: 'none',
       },
     },
   };
@@ -28,7 +28,7 @@ export const LogFilter = ({ value, onChange }: LogFilterProps) => {
       autoComplete="off"
       spellCheck="false"
       value={value}
-      placeholder={t("Filter conditions")}
+      placeholder={t('Filter conditions')}
       onChange={(e) => onChange(e.target.value)}
       className="!pb-0"
       sx={{ input: { py: 1, fontSize: 14 } }}

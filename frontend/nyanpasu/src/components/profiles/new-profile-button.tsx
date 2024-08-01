@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Add } from "@mui/icons-material";
-import { FloatingButton } from "@nyanpasu/ui";
-import { ProfileDialog } from "./profile-dialog";
+import { useState } from 'react';
+import { Add } from '@mui/icons-material';
+import { FloatingButton } from '@nyanpasu/ui';
+import { ProfileDialog } from './profile-dialog';
 
 export const NewProfileButton = () => {
   const [open, setOpen] = useState(false);

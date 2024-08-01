@@ -1,20 +1,20 @@
-import { version } from "~/package.json";
-import { useAsyncEffect, useReactive } from "ahooks";
-import { useRef, useState } from "react";
+import { version } from '~/package.json';
+import { useAsyncEffect, useReactive } from 'ahooks';
+import { useRef, useState } from 'react';
 import {
   Controller,
   SelectElement,
   TextFieldElement,
   useForm,
-} from "react-hook-form-mui";
-import { useTranslation } from "react-i18next";
-import { classNames } from "@/utils";
-import { Divider, InputAdornment } from "@mui/material";
-import { Profile, useClash } from "@nyanpasu/interface";
-import { BaseDialog } from "@nyanpasu/ui";
-import { LabelSwitch } from "../setting/modules/clash-field";
-import { ProfileMonacoView, ProfileMonacoViewRef } from "./profile-monaco-view";
-import { ReadProfile } from "./read-profile";
+} from 'react-hook-form-mui';
+import { useTranslation } from 'react-i18next';
+import { classNames } from '@/utils';
+import { Divider, InputAdornment } from '@mui/material';
+import { Profile, useClash } from '@nyanpasu/interface';
+import { BaseDialog } from '@nyanpasu/ui';
+import { LabelSwitch } from '../setting/modules/clash-field';
+import { ProfileMonacoView, ProfileMonacoViewRef } from './profile-monaco-view';
+import { ReadProfile } from './read-profile';
 
 export interface ProfileDialogProps {
   profile?: Profile.Item;
@@ -32,16 +32,16 @@ export const ProfileDialog = ({
   const { createProfile, setProfiles, getProfileFile, setProfileFile } =
     useClash();
 
-  const localProfile = useRef("");
+  const localProfile = useRef('');
 
-  const [localProfileMessage, setLocalProfileMessage] = useState("");
+  const [localProfileMessage, setLocalProfileMessage] = useState('');
 
   const { control, watch, handleSubmit, reset } = useForm<Profile.Item>({
     defaultValues: profile || {
-      type: "remote",
-      name: `New Profile`,
-      desc: "",
-      url: "",
+      type: 'remote',
+      name: 'New Profile',
+      desc: '',
+      url: '',
       option: {
         // user_agent: "",
         with_proxy: false,
@@ -50,20 +50,20 @@ export const ProfileDialog = ({
     },
   });
 
-  const isRemote = watch("type") === "remote";
+  const isRemote = watch('type') === 'remote';
 
   const isEdit = Boolean(profile);
 
   const commonProps = {
-    autoComplete: "off",
-    autoCorrect: "off",
+    autoComplete: 'off',
+    autoCorrect: 'off',
     fullWidth: true,
   };
 
   const handleProfileSelected = (content: string) => {
     localProfile.current = content;
 
-    setLocalProfileMessage("");
+    setLocalProfileMessage('');
   };
 
   const onSubmit = handleSubmit(async (form) => {
@@ -74,9 +74,7 @@ export const ProfileDialog = ({
         if (localProfile.current) {
           await createProfile(form, localProfile.current);
         } else {
-          setLocalProfileMessage("Not selected profile");
-
-          return;
+          setLocalProfileMessage('Not selected profile');
         }
       }
     };
@@ -84,7 +82,7 @@ export const ProfileDialog = ({
     const toUpdate = async () => {
       await setProfiles(form.uid, form);
 
-      const value = profileMonacoViewRef.current?.getValue() || "";
+      const value = profileMonacoViewRef.current?.getValue() || '';
 
       await setProfileFile(form.uid, value);
     };
@@ -106,23 +104,23 @@ export const ProfileDialog = ({
   const profileMonacoViewRef = useRef<ProfileMonacoViewRef>(null);
 
   const editor = useReactive({
-    value: "",
-    language: "yaml",
+    value: '',
+    language: 'yaml',
   });
 
   const dialogProps = isEdit && {
     contentStyle: {
-      overflow: "hidden",
+      overflow: 'hidden',
       padding: 0,
     },
     full: true,
   };
 
   const MetaInfo = ({ className }: { className?: string }) => (
-    <div className={classNames("flex flex-col gap-4 pb-2 pt-2", className)}>
+    <div className={classNames('flex flex-col gap-4 pb-2 pt-2', className)}>
       {!isEdit && (
         <SelectElement
-          label={t("Type")}
+          label={t('Type')}
           name="type"
           control={control}
           {...commonProps}
@@ -130,19 +128,19 @@ export const ProfileDialog = ({
           required
           options={[
             {
-              id: "remote",
-              label: t("Remote Profile"),
+              id: 'remote',
+              label: t('Remote Profile'),
             },
             {
-              id: "local",
-              label: t("Local Profile"),
+              id: 'local',
+              label: t('Local Profile'),
             },
           ]}
         />
       )}
 
       <TextFieldElement
-        label={t("Name")}
+        label={t('Name')}
         name="name"
         control={control}
         size="small"
@@ -151,7 +149,7 @@ export const ProfileDialog = ({
       />
 
       <TextFieldElement
-        label={t("Descriptions")}
+        label={t('Descriptions')}
         name="desc"
         control={control}
         {...commonProps}
@@ -162,7 +160,7 @@ export const ProfileDialog = ({
       {isRemote ? (
         <>
           <TextFieldElement
-            label={t("Subscription URL")}
+            label={t('Subscription URL')}
             name="url"
             control={control}
             {...commonProps}
@@ -181,7 +179,7 @@ export const ProfileDialog = ({
           />
 
           <TextFieldElement
-            label={t("Update Interval")}
+            label={t('Update Interval')}
             name="option.update_interval"
             control={control}
             {...commonProps}
@@ -200,7 +198,7 @@ export const ProfileDialog = ({
             control={control}
             render={({ field }) => (
               <LabelSwitch
-                label={t("Use System Proxy")}
+                label={t('Use System Proxy')}
                 checked={field.value}
                 {...field}
               />
@@ -212,15 +210,15 @@ export const ProfileDialog = ({
             control={control}
             render={({ field }) => (
               <LabelSwitch
-                label={t("Use Clash Proxy")}
+                label={t('Use Clash Proxy')}
                 checked={field.value}
                 {...field}
               />
             )}
           />
         </>
-      ) : (
-        !isEdit && (
+          ) : (
+            !isEdit && (
           <>
             <ReadProfile onSelected={handleProfileSelected} />
 
@@ -228,8 +226,8 @@ export const ProfileDialog = ({
               <div className="ml-2 text-red-500">{localProfileMessage}</div>
             )}
           </>
-        )
-      )}
+            )
+          )}
     </div>
   );
 
@@ -245,7 +243,7 @@ export const ProfileDialog = ({
 
   return (
     <BaseDialog
-      title={isEdit ? t("Edit Profile") : t("Create Profile")}
+      title={isEdit ? t('Edit Profile') : t('Create Profile')}
       open={open}
       onClose={() => onClose()}
       onOk={onSubmit}
@@ -268,9 +266,9 @@ export const ProfileDialog = ({
             language={editor.language}
           />
         </div>
-      ) : (
+          ) : (
         <MetaInfo />
-      )}
+          )}
     </BaseDialog>
   );
 };

@@ -2,10 +2,10 @@ import {
   argbFromHex,
   hexFromArgb,
   themeFromSourceColor,
-} from "@material/material-color-utilities";
-import type { BreakpointsOptions } from "@mui/material/styles";
-import createPalette from "@mui/material/styles/createPalette";
-import extendTheme from "@mui/material/styles/experimental_extendTheme";
+} from '@material/material-color-utilities';
+import type { BreakpointsOptions } from '@mui/material/styles';
+import createPalette from '@mui/material/styles/createPalette';
+import extendTheme from '@mui/material/styles/experimental_extendTheme';
 import {
   MuiButton,
   MuiButtonGroup,
@@ -19,7 +19,7 @@ import {
   MuiMenu,
   MuiPaper,
   MuiSwitch,
-} from "./themeComponents";
+} from './themeComponents';
 
 interface ThemeSchema {
   primary_color: string;
@@ -48,7 +48,7 @@ export const createMDYTheme = (themeSchema: ThemeSchema) => {
     argbFromHex(themeSchema.primary_color),
   );
 
-  const generatePalette = (mode: "light" | "dark") => {
+  const generatePalette = (mode: 'light' | 'dark') => {
     return createPalette({
       mode,
       primary: {
@@ -72,10 +72,10 @@ export const createMDYTheme = (themeSchema: ThemeSchema) => {
   const theme = extendTheme({
     colorSchemes: {
       light: {
-        palette: generatePalette("light"),
+        palette: generatePalette('light'),
       },
       dark: {
-        palette: generatePalette("dark"),
+        palette: generatePalette('dark'),
       },
     },
     typography: {

@@ -1,11 +1,11 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 import {
   alpha,
   FilledInputProps,
   TextField,
   TextFieldProps,
   useTheme,
-} from "@mui/material";
+} from '@mui/material';
 
 export const HeaderSearch = (props: TextFieldProps) => {
   const { t } = useTranslation();
@@ -17,12 +17,12 @@ export const HeaderSearch = (props: TextFieldProps) => {
       borderRadius: 7,
       backgroundColor: alpha(palette.primary.main, 0.1),
 
-      "&::before": {
-        display: "none",
+      '&::before': {
+        display: 'none',
       },
 
-      "&::after": {
-        display: "none",
+      '&::after': {
+        display: 'none',
       },
     },
   };
@@ -32,7 +32,7 @@ export const HeaderSearch = (props: TextFieldProps) => {
       autoComplete="off"
       spellCheck="false"
       hiddenLabel
-      placeholder={t("Type to Filter")}
+      placeholder={t('Type to Filter')}
       variant="filled"
       className="!pb-0"
       sx={{ input: { py: 1, fontSize: 14 } }}

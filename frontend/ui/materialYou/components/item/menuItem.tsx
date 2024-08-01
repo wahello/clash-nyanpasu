@@ -1,5 +1,5 @@
-import { MenuItem as MuiMenuItem, Select, SxProps } from "@mui/material";
-import { BaseItem } from "./baseItem";
+import { MenuItem as MuiMenuItem, Select, SxProps } from '@mui/material';
+import { BaseItem } from './baseItem';
 
 type OptionValue = string | number | boolean;
 
@@ -45,7 +45,7 @@ export const MenuItem = ({
       <Select
         size="small"
         value={selected}
-        inputProps={{ "aria-label": "Without label" }}
+        inputProps={{ 'aria-label': 'Without label' }}
         onChange={(e) => {
           onSelected(e.target.value);
         }}

@@ -1,11 +1,11 @@
-import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { VList } from "virtua";
-import { BaseEmpty } from "@/components/base";
-import RuleItem from "@/components/rules/rule-item";
-import { alpha, FilledInputProps, TextField, useTheme } from "@mui/material";
-import { useClashCore } from "@nyanpasu/interface";
-import { BasePage } from "@nyanpasu/ui";
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { VList } from 'virtua';
+import { BaseEmpty } from '@/components/base';
+import RuleItem from '@/components/rules/rule-item';
+import { alpha, FilledInputProps, TextField, useTheme } from '@mui/material';
+import { useClashCore } from '@nyanpasu/interface';
+import { BasePage } from '@nyanpasu/ui';
 
 export default function RulesPage() {
   const { t } = useTranslation();
@@ -14,7 +14,7 @@ export default function RulesPage() {
 
   const { getRules } = useClashCore();
 
-  const [filterText, setFilterText] = useState("");
+  const [filterText, setFilterText] = useState('');
 
   const rules = useMemo(() => {
     return getRules.data?.rules.filter((each) =>
@@ -28,7 +28,7 @@ export default function RulesPage() {
       backgroundColor: alpha(palette.primary.main, 0.1),
 
       fieldset: {
-        border: "none",
+        border: 'none',
       },
     },
   };
@@ -36,16 +36,16 @@ export default function RulesPage() {
   return (
     <BasePage
       full
-      title={t("Rules")}
-      contentStyle={{ height: "100%" }}
-      sectionStyle={{ height: "100%" }}
+      title={t('Rules')}
+      contentStyle={{ height: '100%' }}
+      sectionStyle={{ height: '100%' }}
       header={
         <TextField
           hiddenLabel
           autoComplete="off"
           spellCheck="false"
           value={filterText}
-          placeholder={t("Filter conditions")}
+          placeholder={t('Filter conditions')}
           onChange={(e) => setFilterText(e.target.value)}
           className="!pb-0"
           sx={{ input: { py: 1, fontSize: 14 } }}
@@ -55,12 +55,12 @@ export default function RulesPage() {
     >
       <VList className="flex select-text flex-col gap-2 overflow-auto p-2">
         {rules ? (
-          rules.map((item, index) => {
-            return <RuleItem key={index} index={index} value={item} />;
-          })
-        ) : (
+              rules.map((item, index) => {
+                return <RuleItem key={index} index={index} value={item} />;
+              })
+            ) : (
           <BaseEmpty text="No Rules" />
-        )}
+            )}
       </VList>
     </BasePage>
   );

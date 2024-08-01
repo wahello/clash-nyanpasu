@@ -1,13 +1,13 @@
-import fs from "fs-extra";
-import { ManifestVersion, SupportedCore } from "./types/index";
-import { MANIFEST_DIR, MANIFEST_VERSION_PATH } from "./utils/env";
-import { consola } from "./utils/logger";
+import fs from 'fs-extra';
+import { ManifestVersion, SupportedCore } from './types/index';
+import { MANIFEST_DIR, MANIFEST_VERSION_PATH } from './utils/env';
+import { consola } from './utils/logger';
 import {
   resolveClashPremium,
   resolveClashRs,
   resolveMihomo,
   resolveMihomoAlpha,
-} from "./utils/manifest";
+} from './utils/manifest';
 
 const MANIFEST_VERSION = 1;
 
@@ -19,13 +19,13 @@ export async function generateLatestVersion() {
     resolveClashPremium,
   ];
 
-  consola.start("Resolving latest versions");
+  consola.start('Resolving latest versions');
 
   const results = await Promise.all(resolvers.map((r) => r()));
 
-  consola.success("Resolved latest versions");
+  consola.success('Resolved latest versions');
 
-  consola.start("Generating manifest");
+  consola.start('Generating manifest');
 
   const manifest: ManifestVersion = {
     manifest_version: MANIFEST_VERSION,
@@ -45,17 +45,17 @@ export async function generateLatestVersion() {
   delete previousManifest.updated_at;
 
   if (JSON.stringify(previousManifest) === JSON.stringify(manifest)) {
-    consola.success("No changes, skip writing manifest");
+    consola.success('No changes, skip writing manifest');
     return;
   }
 
   manifest.updated_at = new Date().toISOString();
 
-  consola.success("Generated manifest");
+  consola.success('Generated manifest');
 
   await fs.writeJSON(MANIFEST_VERSION_PATH, manifest, { spaces: 2 });
 
-  consola.success("Manifest written");
+  consola.success('Manifest written');
 }
 
 generateLatestVersion();

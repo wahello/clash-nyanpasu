@@ -1,10 +1,10 @@
-import { useAsyncEffect } from "ahooks";
-import { useState } from "react";
-import { classNames } from "@/utils";
-import { formatAnsi } from "@/utils/shiki";
-import { useTheme } from "@mui/material";
-import { LogMessage } from "@nyanpasu/interface";
-import styles from "./log-item.module.scss";
+import { useAsyncEffect } from 'ahooks';
+import { useState } from 'react';
+import { classNames } from '@/utils';
+import { formatAnsi } from '@/utils/shiki';
+import { useTheme } from '@mui/material';
+import { LogMessage } from '@nyanpasu/interface';
+import styles from './log-item.module.scss';
 
 export const LogItem = ({ value }: { value: LogMessage }) => {
   const { palette } = useTheme();
@@ -40,8 +40,8 @@ export const LogItem = ({ value }: { value: LogMessage }) => {
         <p
           className={classNames(
             styles.item,
-            palette.mode === "dark" && styles.dark,
-            "data",
+            palette.mode === 'dark' && styles.dark,
+            'data'
           )}
           dangerouslySetInnerHTML={{
             __html: payload,

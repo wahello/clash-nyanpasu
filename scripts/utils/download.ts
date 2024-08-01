@@ -1,14 +1,14 @@
-import { execSync } from "child_process";
-import path from "path";
-import zlib from "zlib";
-import AdmZip from "adm-zip";
-import fs from "fs-extra";
-import fetch, { type RequestInit } from "node-fetch";
-import * as tar from "tar";
-import { BinInfo } from "types";
-import { getProxyAgent } from "./";
-import { TAURI_APP_DIR, TEMP_DIR } from "./env";
-import { colorize, consola } from "./logger";
+import { execSync } from 'child_process';
+import path from 'path';
+import zlib from 'zlib';
+import AdmZip from 'adm-zip';
+import fs from 'fs-extra';
+import fetch, { type RequestInit } from 'node-fetch';
+import * as tar from 'tar';
+import { BinInfo } from 'types';
+import { getProxyAgent } from './';
+import { TAURI_APP_DIR, TEMP_DIR } from './env';
+import { colorize, consola } from './logger';
 
 /**
  * download sidecar and rename
@@ -24,8 +24,8 @@ export const downloadFile = async (url: string, path: string) => {
 
   const response = await fetch(url, {
     ...options,
-    method: "GET",
-    headers: { "Content-Type": "application/octet-stream" },
+    method: 'GET',
+    headers: { 'Content-Type': 'application/octet-stream' },
   });
 
   const buffer = await response.arrayBuffer();
@@ -33,7 +33,7 @@ export const downloadFile = async (url: string, path: string) => {
   await fs.writeFile(path, new Uint8Array(buffer));
 
   consola.success(
-    colorize`download finished {gray "${url.split("/").at(-1)}"}`,
+    colorize`download finished {gray "${url.split('/').at(-1)}"}`,
   );
 };
 
@@ -46,7 +46,7 @@ export const resolveSidecar = async (
 
   consola.debug(colorize`resolve {cyan ${name}}...`);
 
-  const sidecarDir = path.join(TAURI_APP_DIR, "sidecar");
+  const sidecarDir = path.join(TAURI_APP_DIR, 'sidecar');
 
   const sidecarPath = path.join(sidecarDir, targetFile);
 
@@ -66,7 +66,7 @@ export const resolveSidecar = async (
     if (!(await fs.pathExists(tempFile))) {
       await downloadFile(downloadURL, tempFile);
     }
-    if (tmpFile.endsWith(".zip")) {
+    if (tmpFile.endsWith('.zip')) {
       const zip = new AdmZip(tempFile);
 
       zip.getEntries().forEach((entry) => {
@@ -80,7 +80,7 @@ export const resolveSidecar = async (
       await fs.rename(tempExe, sidecarPath);
 
       consola.debug(colorize`{green "${name}"} unzip finished`);
-    } else if (tmpFile.endsWith(".tar.gz")) {
+    } else if (tmpFile.endsWith('.tar.gz')) {
       // decompress and untar the file
       await tar.x({
         file: tempFile,
@@ -88,7 +88,7 @@ export const resolveSidecar = async (
       });
       await fs.rename(tempExe, sidecarPath);
       consola.debug(colorize`{green "${name}"} untar finished`);
-    } else if (tmpFile.endsWith(".gz")) {
+    } else if (tmpFile.endsWith('.gz')) {
       // gz
       const readStream = fs.createReadStream(tempFile);
 
@@ -100,9 +100,9 @@ export const resolveSidecar = async (
           reject(error);
         };
         readStream
-          .pipe(zlib.createGunzip().on("error", onError))
+          .pipe(zlib.createGunzip().on('error', onError))
           .pipe(writeStream)
-          .on("finish", () => {
+          .on('finish', () => {
             consola.debug(colorize`{green "${name}"} gunzip finished`);
 
             execSync(`chmod 755 ${sidecarPath}`);
@@ -111,7 +111,7 @@ export const resolveSidecar = async (
 
             resolve();
           })
-          .on("error", onError);
+          .on('error', onError);
       });
     } else {
       // Common Files
@@ -119,7 +119,7 @@ export const resolveSidecar = async (
 
       consola.info(colorize`{green "${name}"} rename finished`);
 
-      if (platform !== "win32") {
+      if (platform !== 'win32') {
         execSync(`chmod 755 ${sidecarPath}`);
 
         consola.info(colorize`{green "${name}"} chmod binary finished`);

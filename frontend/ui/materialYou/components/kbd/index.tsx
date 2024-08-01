@@ -1,6 +1,6 @@
-import clsx from "clsx";
-import { useTheme } from "@mui/material";
-import styles from "./index.module.scss";
+import clsx from 'clsx';
+import { useTheme } from '@mui/material';
+import styles from './index.module.scss';
 
 export type Props = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLElement>,
@@ -13,7 +13,7 @@ export default function Kbd({ className, children, ...rest }: Props) {
     <kbd
       className={clsx(
         styles.kbd,
-        theme.palette.mode === "dark" && styles.dark,
+        theme.palette.mode === 'dark' && styles.dark,
         className,
       )}
       {...rest}

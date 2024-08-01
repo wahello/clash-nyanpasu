@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
-import { FC, ReactNode } from "react";
-import Divider from "@mui/material/Divider";
-import Toolbar from "@mui/material/Toolbar";
-import { BaseErrorBoundary } from "../basePage/baseErrorBoundary";
-import Header from "../basePage/header";
-import style from "./style.module.scss";
+import { motion } from 'framer-motion';
+import { FC, ReactNode } from 'react';
+import Divider from '@mui/material/Divider';
+import Toolbar from '@mui/material/Toolbar';
+import { BaseErrorBoundary } from '../basePage/baseErrorBoundary';
+import Header from '../basePage/header';
+import style from './style.module.scss';
 
 interface Props {
   title?: ReactNode;
@@ -31,40 +31,40 @@ export const SidePage: FC<Props> = ({
 }) => {
   return (
     <BaseErrorBoundary>
-      <div className={style["MDYSidePage-Main"]} data-windrag>
+      <div className={style['MDYSidePage-Main']} data-windrag>
         <Header title={title} header={header} />
 
-        <div className={style["MDYSidePage-Container"]}>
+        <div className={style['MDYSidePage-Container']}>
           <div
-            className={style["MDYSidePage-Layout"]}
+            className={style['MDYSidePage-Layout']}
             style={{
-              flexDirection: flexReverse ? "row-reverse" : undefined,
-              gap: side ? undefined : "0px",
+              flexDirection: flexReverse ? 'row-reverse' : undefined,
+              gap: side ? undefined : '0px',
             }}
           >
             <motion.div
               className={style.LeftContainer}
               initial={false}
-              animate={side ? "open" : "closed"}
+              animate={side ? 'open' : 'closed'}
               variants={{
                 open: {
                   opacity: 1,
-                  maxWidth: "348px",
-                  minWidth: "192px",
-                  display: "flex",
+                  maxWidth: '348px',
+                  minWidth: '192px',
+                  display: 'flex',
                 },
                 closed: {
                   opacity: 0.5,
                   maxWidth: 0,
                   transitionEnd: {
-                    display: "none",
+                    display: 'none',
                   },
                 },
               }}
             >
               {sideBar && <div>{sideBar}</div>}
 
-              <div className={style["LeftContainer-Content"]}>
+              <div className={style['LeftContainer-Content']}>
                 <section className={sideClassName}>{side}</section>
               </div>
             </motion.div>
@@ -79,11 +79,11 @@ export const SidePage: FC<Props> = ({
               )}
 
               <div
-                className={style["RightContainer-Content"]}
-                style={toolBar ? { height: "calc(100% - 49px)" } : undefined}
+                className={style['RightContainer-Content']}
+                style={toolBar ? { height: 'calc(100% - 49px)' } : undefined}
               >
                 <section
-                  style={noChildrenScroll ? { overflow: "visible" } : undefined}
+                  style={noChildrenScroll ? { overflow: 'visible' } : undefined}
                 >
                   {children}
                 </section>

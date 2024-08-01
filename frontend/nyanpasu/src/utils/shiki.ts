@@ -1,8 +1,8 @@
-import type { Highlighter } from "shiki";
-import { getHighlighterCore } from "shiki/core";
-import minLight from "shiki/themes/min-light.mjs";
-import nord from "shiki/themes/nord.mjs";
-import getWasm from "shiki/wasm";
+import type { Highlighter } from 'shiki';
+import { getHighlighterCore } from 'shiki/core';
+import minLight from 'shiki/themes/min-light.mjs';
+import nord from 'shiki/themes/nord.mjs';
+import getWasm from 'shiki/wasm';
 
 let shiki: Highlighter | null = null;
 
@@ -21,10 +21,10 @@ export async function getShikiSingleton() {
 export async function formatAnsi(str: string) {
   const instance = await getShikiSingleton();
   return instance.codeToHtml(str, {
-    lang: "ansi",
+    lang: 'ansi',
     themes: {
-      dark: "nord",
-      light: "min-light",
+      dark: 'nord',
+      light: 'min-light',
     },
   });
 }

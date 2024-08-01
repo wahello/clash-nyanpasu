@@ -1,5 +1,5 @@
-import { useTheme } from "@mui/material";
-import { Clash } from "@nyanpasu/interface";
+import { useTheme } from '@mui/material';
+import { Clash } from '@nyanpasu/interface';
 
 interface Props {
   index: number;
@@ -19,8 +19,8 @@ const RuleItem = ({ index, value }: Props) => {
 
   const parseColor = (text: string) => {
     const TYPE = {
-      reject: ["REJECT", "REJECT-DROP"],
-      direct: ["DIRECT"],
+      reject: ['REJECT', 'REJECT-DROP'],
+      direct: ['DIRECT'],
     };
 
     if (TYPE.reject.includes(text)) return palette.error.main;
@@ -44,7 +44,7 @@ const RuleItem = ({ index, value }: Props) => {
 
       <div className="flex flex-col gap-1">
         <div style={{ color: palette.text.primary }}>
-          {value.payload || "-"}
+          {value.payload || '-'}
         </div>
 
         <div className="flex gap-8">

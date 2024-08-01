@@ -1,11 +1,11 @@
-import { MuiColorInput } from "mui-color-input";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { languageOptions } from "@/utils/language";
-import Done from "@mui/icons-material/Done";
-import { Box, Button, List, ListItem, ListItemText } from "@mui/material";
-import { useNyanpasu, VergeConfig } from "@nyanpasu/interface";
-import { BaseCard, Expand, MenuItem } from "@nyanpasu/ui";
+import { MuiColorInput } from 'mui-color-input';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { languageOptions } from '@/utils/language';
+import Done from '@mui/icons-material/Done';
+import { Box, Button, List, ListItem, ListItemText } from '@mui/material';
+import { useNyanpasu, VergeConfig } from '@nyanpasu/interface';
+import { BaseCard, Expand, MenuItem } from '@nyanpasu/ui';
 
 export const SettingNyanpasuUI = () => {
   const { t } = useTranslation();
@@ -13,13 +13,13 @@ export const SettingNyanpasuUI = () => {
   const { nyanpasuConfig, setNyanpasuConfig } = useNyanpasu();
 
   const themeOptions = {
-    dark: t("theme.dark"),
-    light: t("theme.light"),
-    system: t("theme.system"),
+    dark: t('theme.dark'),
+    light: t('theme.light'),
+    system: t('theme.system'),
   };
 
   const [themeColor, setThemeColor] = useState(
-    nyanpasuConfig?.theme_setting?.primary_color || "#fff",
+    nyanpasuConfig?.theme_setting?.primary_color || '#fff'
   );
 
   const commonSx = {
@@ -30,29 +30,29 @@ export const SettingNyanpasuUI = () => {
     <BaseCard label="User Interface">
       <List disablePadding>
         <MenuItem
-          label={t("Language")}
+          label={t('Language')}
           selectSx={commonSx}
           options={languageOptions}
-          selected={nyanpasuConfig?.language || "en"}
+          selected={nyanpasuConfig?.language || 'en'}
           onSelected={(value) =>
             setNyanpasuConfig({ language: value as string })
           }
         />
 
         <MenuItem
-          label={t("Theme Mode")}
+          label={t('Theme Mode')}
           selectSx={commonSx}
           options={themeOptions}
-          selected={nyanpasuConfig?.theme_mode || "light"}
+          selected={nyanpasuConfig?.theme_mode || 'light'}
           onSelected={(value) =>
             setNyanpasuConfig({
-              theme_mode: value as VergeConfig["theme_mode"],
+              theme_mode: value as VergeConfig['theme_mode'],
             })
           }
         />
 
         <ListItem sx={{ pl: 0, pr: 0 }}>
-          <ListItemText primary={t("Theme Setting")} />
+          <ListItemText primary={t('Theme Setting')} />
 
           <MuiColorInput
             size="small"

@@ -1,15 +1,15 @@
-import { useDebounceFn, useLockFn } from "ahooks";
-import { memo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { classNames } from "@/utils";
-import { Bolt, Done } from "@mui/icons-material";
+import { useDebounceFn, useLockFn } from 'ahooks';
+import { memo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { classNames } from '@/utils';
+import { Bolt, Done } from '@mui/icons-material';
 import {
   alpha,
   Button,
   CircularProgress,
   Tooltip,
   useTheme,
-} from "@mui/material";
+} from '@mui/material';
 
 export const DelayButton = memo(function DelayButton({
   onClick,
@@ -45,21 +45,21 @@ export const DelayButton = memo(function DelayButton({
   const isSuccess = mounted && !loading;
 
   return (
-    <Tooltip title={t("Delay check")}>
+    <Tooltip title={t('Delay check')}>
       <Button
         className="!fixed bottom-8 right-8 z-10 size-16 !rounded-2xl backdrop-blur"
         sx={{
           boxShadow: 8,
           backgroundColor: alpha(
-            palette[isSuccess ? "success" : "primary"].main,
+            palette[isSuccess ? 'success' : 'primary'].main,
             isSuccess ? 0.7 : 0.3,
           ),
 
-          "&:hover": {
+          '&:hover': {
             backgroundColor: alpha(palette.primary.main, 0.45),
           },
 
-          "&.MuiLoadingButton-loading": {
+          '&.MuiLoadingButton-loading': {
             backgroundColor: alpha(palette.primary.main, 0.15),
           },
         }}
@@ -67,9 +67,9 @@ export const DelayButton = memo(function DelayButton({
       >
         <Bolt
           className={classNames(
-            "!size-8",
-            "!transition-opacity",
-            mounted ? "opacity-0" : "opacity-1",
+            '!size-8',
+            '!transition-opacity',
+            mounted ? 'opacity-0' : 'opacity-1'
           )}
         />
 
@@ -77,9 +77,9 @@ export const DelayButton = memo(function DelayButton({
           <CircularProgress
             size={32}
             className={classNames(
-              "transition-opacity",
-              "absolute",
-              loading ? "opacity-1" : "opacity-0",
+              'transition-opacity',
+              'absolute',
+              loading ? 'opacity-1' : 'opacity-0'
             )}
           />
         )}
@@ -87,10 +87,10 @@ export const DelayButton = memo(function DelayButton({
         <Done
           color="success"
           className={classNames(
-            "!size-8",
-            "absolute",
-            "!transition-opacity",
-            isSuccess ? "opacity-1" : "opacity-0",
+            '!size-8',
+            'absolute',
+            '!transition-opacity',
+            isSuccess ? 'opacity-1' : 'opacity-0'
           )}
         />
       </Button>

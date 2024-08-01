@@ -1,12 +1,12 @@
-import dayjs from "dayjs";
-import { useSetAtom } from "jotai";
-import { useEffect } from "react";
-import { atomLogData } from "@/store";
-import { LogMessage, useClashWS } from "@nyanpasu/interface";
+import dayjs from 'dayjs';
+import { useSetAtom } from 'jotai';
+import { useEffect } from 'react';
+import { atomLogData } from '@/store';
+import { LogMessage, useClashWS } from '@nyanpasu/interface';
 
 const MAX_LOG_NUM = 1000;
 
-const time = dayjs().format("MM-DD HH:mm:ss");
+const time = dayjs().format('MM-DD HH:mm:ss');
 
 export const LogProvider = () => {
   const {

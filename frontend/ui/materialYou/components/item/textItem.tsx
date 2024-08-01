@@ -1,10 +1,10 @@
-import { useState } from "react";
-import Done from "@mui/icons-material/Done";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import ListItem from "@mui/material/ListItem";
-import TextField from "@mui/material/TextField";
-import { Expand } from "../expand";
+import { useState } from 'react';
+import Done from '@mui/icons-material/Done';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ListItem from '@mui/material/ListItem';
+import TextField from '@mui/material/TextField';
+import { Expand } from '../expand';
 
 export interface TextItemProps {
   value: string;
@@ -30,7 +30,7 @@ export const TextItem = ({
           value={textString}
           label={label}
           variant="outlined"
-          sx={{ width: "100%" }}
+          sx={{ width: '100%' }}
           multiline
           onChange={(e) => setTextString(e.target.value)}
           placeholder={placeholder}
@@ -44,7 +44,7 @@ export const TextItem = ({
             startIcon={<Done />}
             onClick={() => onApply(textString)}
           >
-            {applyLabel ?? "Apply"}
+            {applyLabel ?? 'Apply'}
           </Button>
         </Box>
       </Expand>

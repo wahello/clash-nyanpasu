@@ -2,21 +2,21 @@
  * Build and upload assets
  * for macOS(aarch)
  */
-import path from "node:path";
-import fs from "fs-extra";
-import { context, getOctokit } from "@actions/github";
-import pkgJson from "../package.json";
-import { consola } from "./utils/logger";
+import path from 'node:path';
+import fs from 'fs-extra';
+import { context, getOctokit } from '@actions/github';
+import pkgJson from '../package.json';
+import { consola } from './utils/logger';
 
 async function resolve() {
   if (!process.env.GITHUB_TOKEN) {
-    throw new Error("GITHUB_TOKEN is required");
+    throw new Error('GITHUB_TOKEN is required');
   }
   if (!process.env.TAURI_PRIVATE_KEY) {
-    throw new Error("TAURI_PRIVATE_KEY is required");
+    throw new Error('TAURI_PRIVATE_KEY is required');
   }
   if (!process.env.TAURI_KEY_PASSWORD) {
-    throw new Error("TAURI_KEY_PASSWORD is required");
+    throw new Error('TAURI_KEY_PASSWORD is required');
   }
 
   const { version } = pkgJson;
@@ -27,13 +27,13 @@ async function resolve() {
 
   const cwd = process.cwd();
   const bundlePath = path.join(
-    "backend/target/aarch64-apple-darwin/release/bundle",
+    'backend/target/aarch64-apple-darwin/release/bundle'
   );
   const join = (p) => path.join(bundlePath, p);
 
   const appPathList = [
-    join("macos/Clash Nyanpasu.aarch64.app.tar.gz"),
-    join("macos/Clash Nyanpasu.aarch64.app.tar.gz.sig"),
+    join('macos/Clash Nyanpasu.aarch64.app.tar.gz'),
+    join('macos/Clash Nyanpasu.aarch64.app.tar.gz.sig'),
   ];
 
   for (const appPath of appPathList) {
@@ -42,8 +42,8 @@ async function resolve() {
     }
   }
 
-  fs.copyFileSync(join("macos/Clash Nyanpasu.app.tar.gz"), appPathList[0]);
-  fs.copyFileSync(join("macos/Clash Nyanpasu.app.tar.gz.sig"), appPathList[1]);
+  fs.copyFileSync(join('macos/Clash Nyanpasu.app.tar.gz'), appPathList[0]);
+  fs.copyFileSync(join('macos/Clash Nyanpasu.app.tar.gz.sig'), appPathList[1]);
 
   const options = { owner: context.repo.owner, repo: context.repo.repo };
   const github = getOctokit(process.env.GITHUB_TOKEN);
@@ -53,7 +53,7 @@ async function resolve() {
     tag,
   });
 
-  if (!release.id) throw new Error("failed to find the release");
+  if (!release.id) throw new Error('failed to find the release');
 
   await uploadAssets(release.id, [
     join(`dmg/Clash Nyanpasu_${version}_aarch64.dmg`),
@@ -66,7 +66,7 @@ async function resolve() {
 async function uploadAssets(releaseId: number, assets: string[]) {
   const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
   if (!GITHUB_TOKEN) {
-    throw new Error("GITHUB_TOKEN is required");
+    throw new Error('GITHUB_TOKEN is required');
   }
   const github = getOctokit(GITHUB_TOKEN);
 
@@ -75,12 +75,12 @@ async function uploadAssets(releaseId: number, assets: string[]) {
 
   for (const assetPath of assets) {
     const headers = {
-      "content-type": "application/zip",
-      "content-length": contentLength(assetPath),
+      'content-type': 'application/zip',
+      'content-length': contentLength(assetPath),
     };
 
     const ext = path.extname(assetPath);
-    const filename = path.basename(assetPath).replace(ext, "");
+    const filename = path.basename(assetPath).replace(ext, '');
     const assetName = path.dirname(assetPath).includes(`target${path.sep}debug`)
       ? `${filename}-debug${ext}`
       : `${filename}${ext}`;
@@ -100,7 +100,7 @@ async function uploadAssets(releaseId: number, assets: string[]) {
       });
       consola.success(`Uploaded ${assetName}`);
     } catch (error) {
-      consola.error("Failed to upload release asset", error.message);
+      consola.error('Failed to upload release asset', error.message);
     }
   }
 }

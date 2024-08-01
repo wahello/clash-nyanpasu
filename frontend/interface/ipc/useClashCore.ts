@@ -1,16 +1,16 @@
-import useSWR from "swr";
+import useSWR from 'swr';
 import {
   Clash,
   clash as clashApi,
   ProviderItem,
   ProviderRules,
-} from "@/service";
-import * as tauri from "@/service/tauri";
+} from '@/service';
+import * as tauri from '@/service/tauri';
 
 export const useClashCore = () => {
   const { getGroupDelay, getProxiesDelay, ...clash } = clashApi();
 
-  const { data, isLoading, mutate } = useSWR("getProxies", tauri.getProxies);
+  const { data, isLoading, mutate } = useSWR('getProxies', tauri.getProxies);
 
   const updateGroupDelay = async (
     index: number,
@@ -62,10 +62,10 @@ export const useClashCore = () => {
     await mutate();
   };
 
-  const getRules = useSWR("getRules", clash.getRules);
+  const getRules = useSWR('getRules', clash.getRules);
 
   const getRulesProviders = useSWR<{ [name: string]: ProviderRules }>(
-    "getRulesProviders",
+    'getRulesProviders',
     clash.getRulesProviders,
   );
 
@@ -76,12 +76,12 @@ export const useClashCore = () => {
   };
 
   const getProxiesProviders = useSWR<{ [name: string]: ProviderItem }>(
-    "getProxiesProviders",
+    'getProxiesProviders',
     clash.getProxiesProviders,
   );
 
   const getAllProxiesProviders = useSWR<{ [name: string]: ProviderItem }>(
-    "getAllProxiesProviders",
+    'getAllProxiesProviders',
     clash.getAllProxiesProviders,
   );
 

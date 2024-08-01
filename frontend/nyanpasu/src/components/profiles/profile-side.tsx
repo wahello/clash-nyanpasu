@@ -1,13 +1,13 @@
-import { Allotment } from "allotment";
-import "allotment/dist/style.css";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Close } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import { Profile } from "@nyanpasu/interface";
-import { SideChain } from "./modules/side-chain";
-import { SideLog } from "./modules/side-log";
-import { ScriptDialog } from "./script-dialog";
+import { Allotment } from 'allotment';
+import 'allotment/dist/style.css';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Close } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import { Profile } from '@nyanpasu/interface';
+import { SideChain } from './modules/side-chain';
+import { SideLog } from './modules/side-log';
+import { ScriptDialog } from './script-dialog';
 
 export interface ProfileSideProps {
   profile?: Profile.Item;
@@ -31,10 +31,10 @@ export const ProfileSide = ({ profile, global, onClose }: ProfileSideProps) => {
     <>
       <div className="flex items-start justify-between p-4 pr-2">
         <div>
-          <div className="text-xl font-bold">{t("Proxy Chains")}</div>
+          <div className="text-xl font-bold">{t('Proxy Chains')}</div>
 
           <div className="truncate">
-            {global ? t("Global Proxy Chains") : profile?.name}
+            {global ? t('Global Proxy Chains') : profile?.name}
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export const ProfileSide = ({ profile, global, onClose }: ProfileSideProps) => {
         </IconButton>
       </div>
 
-      <div style={{ height: "calc(100% - 84px)" }}>
+      <div style={{ height: 'calc(100% - 84px)' }}>
         <Allotment vertical defaultSizes={[1, 0]}>
           <Allotment.Pane snap>
             <SideChain

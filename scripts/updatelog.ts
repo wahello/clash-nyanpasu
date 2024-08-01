@@ -1,8 +1,8 @@
-import path from "path";
-import fs from "fs-extra";
-import { cwd } from "./utils/env";
+import path from 'path';
+import fs from 'fs-extra';
+import { cwd } from './utils/env';
 
-const UPDATE_LOG = "UPDATELOG.md";
+const UPDATE_LOG = 'UPDATELOG.md';
 
 // parse the UPDATELOG.md
 export async function resolveUpdateLog(tag: string) {
@@ -12,15 +12,15 @@ export async function resolveUpdateLog(tag: string) {
   const file = path.join(cwd, UPDATE_LOG);
 
   if (!(await fs.pathExists(file))) {
-    throw new Error("could not found UPDATELOG.md");
+    throw new Error('could not found UPDATELOG.md');
   }
 
-  const data = await fs.readFile(file).then((d) => d.toString("utf8"));
+  const data = await fs.readFile(file).then((d) => d.toString('utf8'));
 
   const map = {};
-  let p = "";
+  let p = '';
 
-  data.split("\n").forEach((line) => {
+  data.split('\n').forEach((line) => {
     if (reTitle.test(line)) {
       p = line.slice(3).trim();
       if (!map[p]) {
@@ -29,7 +29,7 @@ export async function resolveUpdateLog(tag: string) {
         throw new Error(`Tag ${p} dup`);
       }
     } else if (reEnd.test(line)) {
-      p = "";
+      p = '';
     } else if (p) {
       map[p].push(line);
     }
@@ -39,5 +39,5 @@ export async function resolveUpdateLog(tag: string) {
     throw new Error(`could not found "${tag}" in UPDATELOG.md`);
   }
 
-  return map[tag].join("\n").trim();
+  return map[tag].join('\n').trim();
 }

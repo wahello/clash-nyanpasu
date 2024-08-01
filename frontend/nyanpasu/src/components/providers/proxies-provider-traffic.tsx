@@ -1,6 +1,6 @@
-import parseTraffic from "@/utils/parse-traffic";
-import { LinearProgress, Tooltip } from "@mui/material";
-import { ProxiesProviderProps } from "./proxies-provider";
+import parseTraffic from '@/utils/parse-traffic';
+import { LinearProgress, Tooltip } from '@mui/material';
+import { ProxiesProviderProps } from './proxies-provider';
 
 export const ProxiesProviderTraffic = ({ provider }: ProxiesProviderProps) => {
   const calc = () => {

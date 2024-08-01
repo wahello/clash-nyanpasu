@@ -1,6 +1,6 @@
-import { memo, ReactNode } from "react";
-import { alpha, CircularProgress, useTheme } from "@mui/material";
-import { PaperButton, PaperButtonProps } from "./nyanpasu-path";
+import { memo, ReactNode } from 'react';
+import { alpha, CircularProgress, useTheme } from '@mui/material';
+import { PaperButton, PaperButtonProps } from './nyanpasu-path';
 
 export interface PaperSwitchButtonProps extends PaperButtonProps {
   label: string;
@@ -24,14 +24,14 @@ export const PaperSwitchButton = memo(function PaperSwitchButton({
       sxPaper={{
         backgroundColor: checked
           ? alpha(palette.primary.main, 0.1)
-          : palette.mode == "dark"
+          : palette.mode == 'dark'
             ? palette.common.black
             : palette.grey[100],
-        cursor: loading ? "progress" : "none",
+        cursor: loading ? 'progress' : 'none',
       }}
       sxButton={{
-        flexDirection: "column",
-        alignItems: "start",
+        flexDirection: 'column',
+        alignItems: 'start',
         gap: 0.5,
       }}
       {...props}
@@ -39,8 +39,8 @@ export const PaperSwitchButton = memo(function PaperSwitchButton({
       {loading === true && (
         <CircularProgress
           sx={{
-            position: "absolute",
-            bottom: "calc(50% - 12px)",
+            position: 'absolute',
+            bottom: 'calc(50% - 12px)',
             right: 12,
           }}
           color="inherit"

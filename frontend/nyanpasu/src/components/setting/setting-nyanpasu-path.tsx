@@ -1,8 +1,8 @@
-import { useLockFn } from "ahooks";
-import { useTranslation } from "react-i18next";
-import { useMessage } from "@/hooks/use-notification";
-import { sleep } from "@/utils";
-import Grid from "@mui/material/Unstable_Grid2";
+import { useLockFn } from 'ahooks';
+import { useTranslation } from 'react-i18next';
+import { useMessage } from '@/hooks/use-notification';
+import { sleep } from '@/utils';
+import Grid from '@mui/material/Unstable_Grid2';
 import {
   collectLogs,
   openAppConfigDir,
@@ -11,10 +11,10 @@ import {
   openLogsDir,
   restartApplication,
   setCustomAppDir,
-} from "@nyanpasu/interface";
-import { BaseCard } from "@nyanpasu/ui";
-import { open } from "@tauri-apps/api/dialog";
-import { PaperButton } from "./modules/nyanpasu-path";
+} from '@nyanpasu/interface';
+import { BaseCard } from '@nyanpasu/ui';
+import { open } from '@tauri-apps/api/dialog';
+import { PaperButton } from './modules/nyanpasu-path';
 
 export const SettingNyanpasuPath = () => {
   const { t } = useTranslation();
@@ -33,9 +33,9 @@ export const SettingNyanpasuPath = () => {
       }
 
       if (Array.isArray(selected)) {
-        useMessage(t("Multiple directories are not supported"), {
-          title: t("Error"),
-          type: "error",
+        useMessage(t('Multiple directories are not supported'), {
+          title: t('Error'),
+          type: 'error',
         });
 
         return;
@@ -43,9 +43,9 @@ export const SettingNyanpasuPath = () => {
 
       await setCustomAppDir(selected);
 
-      useMessage(t("App directory changed successfully"), {
-        title: t("Success"),
-        type: "error",
+      useMessage(t('App directory changed successfully'), {
+        title: t('Success'),
+        type: 'error',
       });
 
       await sleep(1000);
@@ -53,31 +53,31 @@ export const SettingNyanpasuPath = () => {
       await restartApplication();
     } catch (e) {
       useMessage(`Migration failed! ${JSON.stringify(e)}`, {
-        title: t("Error"),
-        type: "error",
+        title: t('Error'),
+        type: 'error',
       });
     }
   });
 
   const gridLists = [
-    { label: t("Open Config Dir"), onClick: openAppConfigDir },
-    { label: t("Open Data Dir"), onClick: openAppDataDir },
-    { label: t("Migration App Path"), onClick: migrateAppPath },
-    { label: t("Open Core Dir"), onClick: openCoreDir },
-    { label: t("Open Logs Dir"), onClick: openLogsDir },
-    { label: t("Collect Logs"), onClick: collectLogs },
+    { label: t('Open Config Dir'), onClick: openAppConfigDir },
+    { label: t('Open Data Dir'), onClick: openAppDataDir },
+    { label: t('Migration App Path'), onClick: migrateAppPath },
+    { label: t('Open Core Dir'), onClick: openCoreDir },
+    { label: t('Open Logs Dir'), onClick: openLogsDir },
+    { label: t('Collect Logs'), onClick: collectLogs },
   ];
 
   return (
-    <BaseCard label={t("Path Config")}>
+    <BaseCard label={t('Path Config')}>
       <Grid container alignItems="stretch" spacing={2}>
         {gridLists.map(({ label, onClick }, index) => (
           <Grid key={index} xs={6} xl={3}>
             <PaperButton
               label={label}
               onClick={onClick}
-              sxPaper={{ height: "100%" }}
-              sxButton={{ height: "100%" }}
+              sxPaper={{ height: '100%' }}
+              sxButton={{ height: '100%' }}
             />
           </Grid>
         ))}

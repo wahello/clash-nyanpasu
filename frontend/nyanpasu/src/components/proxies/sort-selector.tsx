@@ -1,8 +1,8 @@
-import { useAtom } from "jotai";
-import { memo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { proxyGroupSortAtom } from "@/store";
-import { alpha, Button, Menu, MenuItem, useTheme } from "@mui/material";
+import { useAtom } from 'jotai';
+import { memo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { proxyGroupSortAtom } from '@/store';
+import { alpha, Button, Menu, MenuItem, useTheme } from '@mui/material';
 
 export const SortSelector = memo(function SortSelector() {
   const { t } = useTranslation();
@@ -21,9 +21,9 @@ export const SortSelector = memo(function SortSelector() {
   };
 
   const tmaps: { [key: string]: string } = {
-    default: "Sort by default",
-    delay: "Sort by delay",
-    name: "Sort by name",
+    default: 'Sort by default',
+    delay: 'Sort by delay',
+    name: 'Sort by name',
   };
 
   return (
@@ -32,7 +32,7 @@ export const SortSelector = memo(function SortSelector() {
         size="small"
         className="!px-2"
         sx={{
-          textTransform: "none",
+          textTransform: 'none',
           backgroundColor: alpha(palette.primary.main, 0.1),
         }}
         onClick={(e) => setAnchorEl(e.currentTarget)}

@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useAtom, useAtomValue } from "jotai";
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAtom, useAtomValue } from 'jotai';
 import {
   forwardRef,
   useCallback,
@@ -8,14 +8,14 @@ import {
   useRef,
   useState,
   useTransition,
-} from "react";
-import { VList, VListHandle } from "virtua";
-import { proxyGroupAtom, proxyGroupSortAtom } from "@/store";
-import { classNames } from "@/utils";
-import { Clash, useClashCore, useNyanpasu } from "@nyanpasu/interface";
-import { useBreakpoint } from "@nyanpasu/ui";
-import NodeCard from "./node-card";
-import { nodeSortingFn } from "./utils";
+} from 'react';
+import { VList, VListHandle } from 'virtua';
+import { proxyGroupAtom, proxyGroupSortAtom } from '@/store';
+import { classNames } from '@/utils';
+import { Clash, useClashCore, useNyanpasu } from '@nyanpasu/interface';
+import { useBreakpoint } from '@nyanpasu/ui';
+import NodeCard from './node-card';
+import { nodeSortingFn } from './utils';
 
 type RenderClashProxy = Clash.Proxy<string> & { renderLayoutKey: string };
 
@@ -143,7 +143,7 @@ export const NodeList = forwardRef(function NodeList({}, ref) {
       );
 
       vListRef.current?.scrollToIndex(index, {
-        align: "center",
+        align: 'center',
         smooth: true,
       });
     },
@@ -167,9 +167,9 @@ export const NodeList = forwardRef(function NodeList({}, ref) {
         ref={vListRef}
         style={{ flex: 1 }}
         className={classNames(
-          "transition-opacity",
-          "p-2",
-          isPending ? "opacity-0" : "opacity-1",
+          'transition-opacity',
+          'p-2',
+          isPending ? 'opacity-0' : 'opacity-1'
         )}
       >
         {renderList?.map((node, index) => {
@@ -184,7 +184,7 @@ export const NodeList = forwardRef(function NodeList({}, ref) {
                   <NodeCard
                     node={render}
                     now={group?.now}
-                    disabled={group?.type !== "Selector"}
+                    disabled={group?.type !== 'Selector'}
                     onClick={() => hendleClick(render.name)}
                     onClickDelay={async () =>
                       await handleClickDelay(render.name)
@@ -196,7 +196,7 @@ export const NodeList = forwardRef(function NodeList({}, ref) {
                   <div className="relative overflow-hidden">
                     <Card />
                   </div>
-                ) : (
+                    ) : (
                   <motion.div
                     key={render.name}
                     layoutId={`node-${render.renderLayoutKey}`}
@@ -208,7 +208,7 @@ export const NodeList = forwardRef(function NodeList({}, ref) {
                   >
                     <Card />
                   </motion.div>
-                );
+                    );
               })}
             </div>
           );

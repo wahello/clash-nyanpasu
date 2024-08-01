@@ -1,5 +1,5 @@
-import { useSessionStorageState } from "ahooks";
-import { useLayoutEffect } from "react";
+import { useSessionStorageState } from 'ahooks';
+import { useLayoutEffect } from 'react';
 
 export interface MousePosition {
   x: number;
@@ -9,7 +9,7 @@ export interface MousePosition {
 export const useClickPosition = () => {
   const [mousePosition, setMousePosition] = useSessionStorageState<
     MousePosition | undefined
-  >("use-click-position", {
+  >('use-click-position', {
     defaultValue: {
       x: 0,
       y: 0,
@@ -24,10 +24,10 @@ export const useClickPosition = () => {
       });
     };
 
-    document.addEventListener("click", updateMousePosition, true);
+    document.addEventListener('click', updateMousePosition, true);
 
     return () => {
-      document.removeEventListener("click", updateMousePosition, true);
+      document.removeEventListener('click', updateMousePosition, true);
     };
   }, []);
 

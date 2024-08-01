@@ -1,14 +1,14 @@
-import { useAsyncEffect, useReactive } from "ahooks";
-import { isEqual } from "lodash-es";
-import { useRef } from "react";
-import { SelectElement, TextFieldElement, useForm } from "react-hook-form-mui";
-import { useTranslation } from "react-i18next";
-import { Divider } from "@mui/material";
-import { Profile, useClash } from "@nyanpasu/interface";
-import { BaseDialog, BaseDialogProps } from "@nyanpasu/ui";
-import { ProfileMonacoView, ProfileMonacoViewRef } from "./profile-monaco-view";
+import { useAsyncEffect, useReactive } from 'ahooks';
+import { isEqual } from 'lodash-es';
+import { useRef } from 'react';
+import { SelectElement, TextFieldElement, useForm } from 'react-hook-form-mui';
+import { useTranslation } from 'react-i18next';
+import { Divider } from '@mui/material';
+import { Profile, useClash } from '@nyanpasu/interface';
+import { BaseDialog, BaseDialogProps } from '@nyanpasu/ui';
+import { ProfileMonacoView, ProfileMonacoViewRef } from './profile-monaco-view';
 
-export interface ScriptDialogProps extends Omit<BaseDialogProps, "title"> {
+export interface ScriptDialogProps extends Omit<BaseDialogProps, 'title'> {
   open: boolean;
   onClose: () => void;
   item?: Profile.Item;
@@ -27,22 +27,22 @@ export const ScriptDialog = ({
 
   const optionTypeMapping = [
     {
-      id: "js",
-      value: { script: "javascript" },
-      language: "javascript",
-      label: t("JavaScript"),
+      id: 'js',
+      value: { script: 'javascript' },
+      language: 'javascript',
+      label: t('JavaScript'),
     },
     {
-      id: "lua",
-      value: { script: "lua" },
-      language: "lua",
-      label: t("LuaScript"),
+      id: 'lua',
+      value: { script: 'lua' },
+      language: 'lua',
+      label: t('LuaScript'),
     },
     {
-      id: "merge",
-      value: "merge",
-      language: "yaml",
-      label: t("Merge"),
+      id: 'merge',
+      value: 'merge',
+      language: 'yaml',
+      label: t('Merge'),
     },
   ];
 
@@ -58,23 +58,23 @@ export const ScriptDialog = ({
     defaultValues: item
       ? preprocessing()
       : {
-          type: "merge",
+          type: 'merge',
           chains: [],
-          name: "New Script",
-          desc: "",
+          name: 'New Script',
+          desc: '',
         },
   });
 
   const profileMonacoViewRef = useRef<ProfileMonacoViewRef>(null);
 
   const editor = useReactive({
-    value: "",
-    language: "javascript",
+    value: '',
+    language: 'javascript',
   });
 
   const handleTypeChange = () => {
     const language = optionTypeMapping.find((option) =>
-      isEqual(option.id, watch("type")),
+      isEqual(option.id, watch('type')),
     )?.language;
 
     if (language) {
@@ -85,13 +85,13 @@ export const ScriptDialog = ({
   const isEdit = Boolean(item);
 
   const commonProps = {
-    autoComplete: "off",
-    autoCorrect: "off",
+    autoComplete: 'off',
+    autoCorrect: 'off',
     fullWidth: true,
   };
 
   const onSubmit = handleSubmit(async (form) => {
-    const value = profileMonacoViewRef.current?.getValue() || "";
+    const value = profileMonacoViewRef.current?.getValue() || '';
 
     const type = optionTypeMapping.find((option) =>
       isEqual(option.id, form.type),
@@ -130,14 +130,14 @@ export const ScriptDialog = ({
 
   return (
     <BaseDialog
-      title={isEdit ? "Edit Script" : "New Script"}
+      title={isEdit ? 'Edit Script' : 'New Script'}
       open={open}
       onClose={() => onClose()}
       onOk={onSubmit}
       divider
       contentStyle={{
-        height: "80vh",
-        width: "90vw",
+        height: '80vh',
+        width: '90vw',
         padding: 0,
       }}
       {...props}
@@ -147,7 +147,7 @@ export const ScriptDialog = ({
           <div className="flex flex-col gap-4 pb-4 pl-4 pr-4">
             {!isEdit && (
               <SelectElement
-                label={t("Type")}
+                label={t('Type')}
                 name="type"
                 control={control}
                 {...commonProps}
@@ -159,7 +159,7 @@ export const ScriptDialog = ({
             )}
 
             <TextFieldElement
-              label={t("Name")}
+              label={t('Name')}
               name="name"
               control={control}
               {...commonProps}
@@ -168,7 +168,7 @@ export const ScriptDialog = ({
             />
 
             <TextFieldElement
-              label={t("Descriptions")}
+              label={t('Descriptions')}
               name="desc"
               control={control}
               {...commonProps}

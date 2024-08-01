@@ -1,24 +1,24 @@
-import { useAtomValue } from "jotai";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { BaseEmpty } from "@/components/base";
-import ClearLogButton from "@/components/logs/clear-log-button";
-import { LogFilter } from "@/components/logs/log-filter";
-import { LogLevel } from "@/components/logs/log-level";
-import { LogList } from "@/components/logs/log-list";
-import LogToggle from "@/components/logs/log-toggle";
-import { atomLogData } from "@/store";
-import { LogMessage } from "@nyanpasu/interface";
-import { BasePage } from "@nyanpasu/ui";
+import { useAtomValue } from 'jotai';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { BaseEmpty } from '@/components/base';
+import ClearLogButton from '@/components/logs/clear-log-button';
+import { LogFilter } from '@/components/logs/log-filter';
+import { LogLevel } from '@/components/logs/log-level';
+import { LogList } from '@/components/logs/log-list';
+import LogToggle from '@/components/logs/log-toggle';
+import { atomLogData } from '@/store';
+import { LogMessage } from '@nyanpasu/interface';
+import { BasePage } from '@nyanpasu/ui';
 
 export default function LogPage() {
   const { t } = useTranslation();
 
   const logData = useAtomValue(atomLogData);
 
-  const [logState, setLogState] = useState("all");
+  const [logState, setLogState] = useState('all');
 
-  const [filterText, setFilterText] = useState("");
+  const [filterText, setFilterText] = useState('');
 
   const [filterLogs, setFilterLogs] = useState<LogMessage[]>([]);
 
@@ -27,7 +27,7 @@ export default function LogPage() {
       logData.filter((data) => {
         return (
           data.payload.includes(filterText) &&
-          (logState === "all" ? true : data.type.includes(logState))
+          (logState === 'all' ? true : data.type.includes(logState))
         );
       }),
     );
@@ -36,9 +36,9 @@ export default function LogPage() {
   return (
     <BasePage
       full
-      title={t("Logs")}
-      contentStyle={{ height: "100%" }}
-      sectionStyle={{ height: "100%" }}
+      title={t('Logs')}
+      contentStyle={{ height: '100%' }}
+      sectionStyle={{ height: '100%' }}
       header={
         <div className="flex gap-2">
           <LogToggle />
@@ -54,9 +54,9 @@ export default function LogPage() {
     >
       {filterLogs.length ? (
         <LogList data={filterLogs} />
-      ) : (
+          ) : (
         <BaseEmpty text="No Logs" />
-      )}
+          )}
 
       <ClearLogButton />
     </BasePage>

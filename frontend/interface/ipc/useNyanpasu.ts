@@ -1,10 +1,10 @@
-import { useMemo } from "react";
-import useSWR from "swr";
-import * as service from "@/service";
-import { VergeConfig } from "@/service";
-import { fetchCoreVersion, fetchLatestCore } from "@/service/core";
-import * as tauri from "@/service/tauri";
-import { useClash } from "./useClash";
+import { useMemo } from 'react';
+import useSWR from 'swr';
+import * as service from '@/service';
+import { VergeConfig } from '@/service';
+import { fetchCoreVersion, fetchLatestCore } from '@/service/core';
+import * as tauri from '@/service/tauri';
+import { useClash } from './useClash';
 
 /**
  * useNyanpasu with swr.
@@ -17,7 +17,7 @@ export const useNyanpasu = (options?: {
   const { getConfigs, setConfigs, deleteConnections } = useClash();
 
   const { data, error, mutate } = useSWR<VergeConfig>(
-    "nyanpasuConfig",
+    'nyanpasuConfig',
     service.getNyanpasuConfig,
   );
 
@@ -37,10 +37,10 @@ export const useNyanpasu = (options?: {
     }
   };
 
-  const getClashCore = useSWR("getClashCore", fetchCoreVersion);
+  const getClashCore = useSWR('getClashCore', fetchCoreVersion);
 
   const setClashCore = async (
-    clashCore: Required<VergeConfig>["clash_core"],
+    clashCore: Required<VergeConfig>['clash_core']
   ) => {
     await service.setClashCore(clashCore);
 
@@ -50,37 +50,37 @@ export const useNyanpasu = (options?: {
     }, 100);
   };
 
-  const getLatestCore = useSWR("getLatestCore", fetchLatestCore, {
+  const getLatestCore = useSWR('getLatestCore', fetchLatestCore, {
     revalidateOnMount: false,
   });
 
-  const updateCore = async (core: Required<VergeConfig>["clash_core"]) => {
+  const updateCore = async (core: Required<VergeConfig>['clash_core']) => {
     await service.updateCore(core);
 
     getClashCore.mutate();
   };
 
-  const getSystemProxy = useSWR("getSystemProxy", service.getSystemProxy);
+  const getSystemProxy = useSWR('getSystemProxy', service.getSystemProxy);
 
-  const getServiceStatus = useSWR("getServiceStatus", service.statusService);
+  const getServiceStatus = useSWR('getServiceStatus', service.statusService);
 
   const setServiceStatus = async (
-    type: "install" | "uninstall" | "start" | "stop",
+    type: 'install' | 'uninstall' | 'start' | 'stop'
   ) => {
     switch (type) {
-      case "install":
+      case 'install':
         await service.installService();
         break;
 
-      case "uninstall":
+      case 'uninstall':
         await service.uninstallService();
         break;
 
-      case "start":
+      case 'start':
         await service.startService();
         break;
 
-      case "stop":
+      case 'stop':
         await service.stopService();
         break;
 
@@ -106,7 +106,7 @@ export const useNyanpasu = (options?: {
       direct: false,
     };
 
-    if (data?.clash_core == "clash") {
+    if (data?.clash_core == 'clash') {
       modes.script = false;
     }
 

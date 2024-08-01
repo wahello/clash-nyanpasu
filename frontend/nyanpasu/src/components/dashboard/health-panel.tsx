@@ -1,12 +1,12 @@
-import { useInterval } from "ahooks";
-import { countryCodeEmoji } from "country-code-emoji";
-import { useRef, useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { CircularProgress, IconButton, Paper, Tooltip } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { timing, useIPSB } from "@nyanpasu/interface";
-import { cn } from "@nyanpasu/ui";
-import { getColorForDelay } from "../proxies/utils";
+import { useInterval } from 'ahooks';
+import { countryCodeEmoji } from 'country-code-emoji';
+import { useRef, useState } from 'react';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { CircularProgress, IconButton, Paper, Tooltip } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
+import { timing, useIPSB } from '@nyanpasu/interface';
+import { cn } from '@nyanpasu/ui';
+import { getColorForDelay } from '../proxies/utils';
 
 const IP_REFRESH_SECONDS = 180;
 
@@ -69,7 +69,7 @@ export const HealthPanel = () => {
                     className="min-w-16 text-end"
                     style={{ color: getColorForDelay(value) }}
                   >
-                    {value ? `${value.toFixed(0)} ms` : "Timeout"}
+                    {value ? `${value.toFixed(0)} ms` : 'Timeout'}
                   </div>
                 </div>
               );
@@ -115,8 +115,8 @@ export const HealthPanel = () => {
                     <div className="relative font-mono">
                       <span
                         className={cn(
-                          "transition-opacity",
-                          showIPAddress ? "opacity-1000" : "opacity-0",
+                          'transition-opacity',
+                          showIPAddress ? 'opacity-1000' : 'opacity-0'
                         )}
                       >
                         {data.ip}
@@ -124,10 +124,10 @@ export const HealthPanel = () => {
 
                       <span
                         className={cn(
-                          "absolute left-0 h-full w-full rounded-lg bg-slate-300 transition-opacity",
+                          'absolute left-0 h-full w-full rounded-lg bg-slate-300 transition-opacity',
                           showIPAddress
-                            ? "opacity-0"
-                            : "animate-pulse opacity-100",
+                            ? 'opacity-0'
+                            : 'animate-pulse opacity-100'
                         )}
                       />
                     </div>

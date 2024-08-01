@@ -1,15 +1,15 @@
-import { ReactNode } from "react";
-import Marquee from "react-fast-marquee";
-import DeleteRounded from "@mui/icons-material/DeleteRounded";
-import EditRounded from "@mui/icons-material/EditRounded";
-import OpenInNewRounded from "@mui/icons-material/OpenInNewRounded";
-import Box from "@mui/material/Box";
-import Chip from "@mui/material/Chip";
-import IconButton from "@mui/material/IconButton";
-import Paper from "@mui/material/Paper";
-import { alpha, styled } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import { open } from "@tauri-apps/api/shell";
+import { ReactNode } from 'react';
+import Marquee from 'react-fast-marquee';
+import DeleteRounded from '@mui/icons-material/DeleteRounded';
+import EditRounded from '@mui/icons-material/EditRounded';
+import OpenInNewRounded from '@mui/icons-material/OpenInNewRounded';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import { alpha, styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import { open } from '@tauri-apps/api/shell';
 
 /**
  * @example
@@ -30,18 +30,18 @@ export const renderChip = (
   },
 ): (string | JSX.Element)[] => {
   return string.split(/(%[^&?]+)/).map((part, index) => {
-    if (part.startsWith("%")) {
-      const label = labels[part.replace("%", "")];
+    if (part.startsWith('%')) {
+      const label = labels[part.replace('%', '')];
 
       // TODO: may should return part string
       if (!label) {
-        return "";
+        return '';
       }
 
       return (
         <Chip
           sx={{
-            "& .MuiChip-label": {
+            '& .MuiChip-label': {
               pl: 0.5,
               pr: 0.5,
             },
@@ -72,9 +72,9 @@ export const extractServer = (
 ): { host: string; port: number } => {
   if (!string) {
     // fallback default values
-    return { host: "127.0.0.1", port: 7890 };
+    return { host: '127.0.0.1', port: 7890 };
   } else {
-    const [host, port] = string.split(":");
+    const [host, port] = string.split(':');
 
     return { host, port: Number(port) };
   }
@@ -98,10 +98,10 @@ export const openWebUrl = (
     [label: string]: string | number | undefined;
   },
 ): void => {
-  let url = "";
+  let url = '';
 
   for (const key in labels) {
-    const regex = new RegExp(`%${key}`, "g");
+    const regex = new RegExp(`%${key}`, 'g');
 
     url = string.replace(regex, labels[key] as string);
   }
@@ -124,8 +124,8 @@ export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: alpha(theme.palette.primary.main, 0.1),
   padding: 16,
   borderRadius: 16,
-  display: "flex",
-  flexDirection: "column",
+  display: 'flex',
+  flexDirection: 'column',
   gap: 8,
 }));
 
@@ -147,7 +147,7 @@ export interface ClashWebItemProps {
     }}
     onDelete={() => {}}
   />
-  
+
  * `Clash Web UI list Item.`
  *
  * @author keiko233 <i@elaina.moe>

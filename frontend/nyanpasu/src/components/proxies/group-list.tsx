@@ -1,18 +1,18 @@
-import { useAtom } from "jotai";
-import { memo } from "react";
-import { Virtualizer } from "virtua";
-import { proxyGroupAtom } from "@/store";
+import { useAtom } from 'jotai';
+import { memo } from 'react';
+import { Virtualizer } from 'virtua';
+import { proxyGroupAtom } from '@/store';
 import {
   ListItem,
   ListItemButton,
   ListItemButtonProps,
   ListItemIcon,
   ListItemText,
-} from "@mui/material";
-import { useClashCore } from "@nyanpasu/interface";
+} from '@mui/material';
+import { useClashCore } from '@nyanpasu/interface';
 
 const IconRender = memo(function IconRender({ icon }: { icon: string }) {
-  const src = icon.trim().startsWith("<svg")
+  const src = icon.trim().startsWith('<svg')
     ? `data:image/svg+xml;base64,${btoa(icon)}`
     : icon;
 

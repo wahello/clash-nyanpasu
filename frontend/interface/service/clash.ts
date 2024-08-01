@@ -1,20 +1,20 @@
-import { ofetch } from "ofetch";
-import { getClashInfo } from "./tauri";
-import { ProviderItem } from "./types";
+import { ofetch } from 'ofetch';
+import { getClashInfo } from './tauri';
+import { ProviderItem } from './types';
 
 export namespace Clash {
   export interface Config {
     port: number;
     mode: string;
     ipv6: boolean;
-    "socket-port": number;
-    "allow-lan": boolean;
-    "log-level": string;
-    "mixed-port": number;
-    "redir-port": number;
-    "socks-port": number;
-    "tproxy-port": number;
-    "external-controller": string;
+    'socket-port': number;
+    'allow-lan': boolean;
+    'log-level': string;
+    'mixed-port': number;
+    'redir-port': number;
+    'socks-port': number;
+    'tproxy-port': number;
+    'external-controller': string;
     secret: string;
   }
 
@@ -54,7 +54,7 @@ export namespace Clash {
 }
 
 const prepareServer = (server: string) => {
-  if (server.startsWith(":")) {
+  if (server.startsWith(':')) {
     return `127.0.0.1${server}`;
   } else if (/^\d+$/.test(server)) {
     return `127.0.0.1:${server}`;
@@ -76,24 +76,24 @@ export const clash = () => {
   };
 
   const getConfigs = async () => {
-    return (await buildRequest())<Clash.Config>("/configs");
+    return (await buildRequest())<Clash.Config>('/configs');
   };
 
   const setConfigs = async (config: Partial<Clash.Config>) => {
-    return (await buildRequest())<Clash.Config>("/configs", {
-      method: "PATCH",
+    return (await buildRequest())<Clash.Config>('/configs', {
+      method: 'PATCH',
       body: config,
     });
   };
 
   const getVersion = async () => {
-    return (await buildRequest())<Clash.Version>("/version");
+    return (await buildRequest())<Clash.Version>('/version');
   };
 
   const getRules = async () => {
     return (await buildRequest())<{
       rules: Clash.Rule[];
-    }>("/rules");
+    }>('/rules');
   };
 
   const getProxiesDelay = async (
@@ -105,7 +105,7 @@ export const clash = () => {
       {
         params: {
           timeout: options?.timeout || 10000,
-          url: options?.url || "http://www.gstatic.com/generate_204",
+          url: options?.url || 'http://www.gstatic.com/generate_204',
         },
       },
     );
@@ -117,7 +117,7 @@ export const clash = () => {
       {
         params: {
           timeout: options?.timeout || 10000,
-          url: options?.url || "http://www.gstatic.com/generate_204",
+          url: options?.url || 'http://www.gstatic.com/generate_204',
         },
       },
     );
@@ -126,7 +126,7 @@ export const clash = () => {
   const getProxies = async () => {
     return (await buildRequest())<{
       proxies: Clash.Proxy[];
-    }>("/proxies");
+    }>('/proxies');
   };
 
   const setProxies = async ({
@@ -137,14 +137,14 @@ export const clash = () => {
     proxy: string;
   }) => {
     return (await buildRequest())(`/proxies/${encodeURIComponent(group)}`, {
-      method: "PUT",
+      method: 'PUT',
       body: { name: proxy },
     });
   };
 
   const deleteConnections = async (id?: string) => {
-    return (await buildRequest())(id ? `/connections/${id}` : "/connections", {
-      method: "DELETE",
+    return (await buildRequest())(id ? `/connections/${id}` : '/connections', {
+      method: 'DELETE',
     });
   };
 
@@ -152,15 +152,15 @@ export const clash = () => {
     return (
       await (
         await buildRequest()
-      )("/providers/rules", {
-        method: "GET",
+      )('/providers/rules', {
+        method: 'GET',
       })
     )?.providers;
   };
 
   const updateRulesProviders = async (name: string) => {
     return (await buildRequest())(`/providers/rules/${name}`, {
-      method: "PUT",
+      method: 'PUT',
     });
   };
 
@@ -168,10 +168,10 @@ export const clash = () => {
     const result: { [key: string]: ProviderItem } = (
       await (
         await buildRequest()
-      )("/providers/proxies")
+      )('/providers/proxies')
     )?.providers;
 
-    const types = ["http", "file"];
+    const types = ['http', 'file'];
 
     return Object.fromEntries(
       Object.entries(result).filter(([, value]) =>
@@ -181,14 +181,14 @@ export const clash = () => {
   };
 
   const getAllProxiesProviders = async () => {
-    return (await (await buildRequest())("/providers/proxies"))?.providers;
+    return (await (await buildRequest())('/providers/proxies'))?.providers;
   };
 
   const updateProxiesProviders = async (name: string) => {
     return (await buildRequest())(
       `/providers/proxies/${encodeURIComponent(name)}`,
       {
-        method: "PUT",
+        method: 'PUT',
       },
     );
   };

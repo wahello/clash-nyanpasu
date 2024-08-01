@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import NewProfileButton from "@/components/profiles/new-profile-button";
-import ProfileItem from "@/components/profiles/profile-item";
-import ProfileSide from "@/components/profiles/profile-side";
-import { QuickImport } from "@/components/profiles/quick-import";
-import { filterProfiles } from "@/components/profiles/utils";
-import { Public } from "@mui/icons-material";
-import Masonry from "@mui/lab/Masonry";
-import { Button } from "@mui/material";
-import { Profile, useClash } from "@nyanpasu/interface";
-import { SidePage } from "@nyanpasu/ui";
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import NewProfileButton from '@/components/profiles/new-profile-button';
+import ProfileItem from '@/components/profiles/profile-item';
+import ProfileSide from '@/components/profiles/profile-side';
+import { QuickImport } from '@/components/profiles/quick-import';
+import { filterProfiles } from '@/components/profiles/utils';
+import { Public } from '@mui/icons-material';
+import Masonry from '@mui/lab/Masonry';
+import { Button } from '@mui/material';
+import { Profile, useClash } from '@nyanpasu/interface';
+import { SidePage } from '@nyanpasu/ui';
 
 export const ProfilePage = () => {
   const { t } = useTranslation();
@@ -44,17 +44,17 @@ export const ProfilePage = () => {
 
   return (
     <SidePage
-      title={t("Profiles")}
+      title={t('Profiles')}
       flexReverse
       header={
         <div>
           <Button
             size="small"
-            variant={globalChain ? "contained" : "outlined"}
+            variant={globalChain ? 'contained' : 'outlined'}
             onClick={handleGlobalChainClick}
             startIcon={<Public />}
           >
-            {t("Global Proxy Chains")}
+            {t('Global Proxy Chains')}
           </Button>
         </div>
       }
@@ -76,7 +76,7 @@ export const ProfilePage = () => {
           <Masonry
             columns={{ xs: 1, sm: 1, md: 2, xl: 3 }}
             spacing={2}
-            sx={{ width: "calc(100% + 24px)" }}
+            sx={{ width: 'calc(100% + 24px)' }}
           >
             {profiles.map((item, index) => {
               return (

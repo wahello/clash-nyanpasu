@@ -1,4 +1,4 @@
-import { FC, memo, ReactNode } from "react";
+import { FC, memo, ReactNode } from 'react';
 
 export const Header: FC<{ title?: ReactNode; header?: ReactNode }> = memo(
   function Header({

@@ -1,6 +1,6 @@
-import { useWebSocket } from "ahooks";
-import { useMemo } from "react";
-import { useClash } from "./useClash";
+import { useWebSocket } from 'ahooks';
+import { useMemo } from 'react';
+import { useClash } from './useClash';
 
 export const useClashWS = () => {
   const { getClashInfo } = useClash();
@@ -10,7 +10,7 @@ export const useClashWS = () => {
   };
 
   const getTokenUrl = () => {
-    return `token=${encodeURIComponent(getClashInfo.data?.secret || "")}`;
+    return `token=${encodeURIComponent(getClashInfo.data?.secret || '')}`;
   };
 
   const resolveUrl = (path: string) => {
@@ -20,21 +20,21 @@ export const useClashWS = () => {
   const url = useMemo(() => {
     if (getClashInfo.data) {
       return {
-        connections: resolveUrl("connections"),
-        logs: resolveUrl("logs"),
-        traffic: resolveUrl("traffic"),
-        memory: resolveUrl("memory"),
+        connections: resolveUrl('connections'),
+        logs: resolveUrl('logs'),
+        traffic: resolveUrl('traffic'),
+        memory: resolveUrl('memory'),
       };
     }
   }, [getClashInfo.data]);
 
-  const connections = useWebSocket(url?.connections ?? "");
+  const connections = useWebSocket(url?.connections ?? '');
 
-  const logs = useWebSocket(url?.logs ?? "");
+  const logs = useWebSocket(url?.logs ?? '');
 
-  const traffic = useWebSocket(url?.traffic ?? "");
+  const traffic = useWebSocket(url?.traffic ?? '');
 
-  const memory = useWebSocket(url?.memory ?? "");
+  const memory = useWebSocket(url?.memory ?? '');
 
   return {
     connections,

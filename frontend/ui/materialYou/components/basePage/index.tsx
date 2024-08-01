@@ -1,7 +1,7 @@
-import { CSSProperties, FC, ReactNode, useEffect, useRef } from "react";
-import { BaseErrorBoundary } from "./baseErrorBoundary";
-import Header from "./header";
-import "./style.scss";
+import { CSSProperties, FC, ReactNode, useEffect, useRef } from 'react';
+import { BaseErrorBoundary } from './baseErrorBoundary';
+import Header from './header';
+import './style.scss';
 
 interface Props {
   title?: ReactNode;
@@ -33,7 +33,7 @@ export const BasePage: FC<Props> = ({
       <div className="MDYBasePage" data-windrag>
         <Header title={title} header={header} />
 
-        <div className={`MDYBasePage-container ${full ? "no-padding" : ""}`}>
+        <div className={`MDYBasePage-container ${full ? 'no-padding' : ''}`}>
           <div className="MDYBasePage-content" style={contentStyleRef.current}>
             <section style={sectionStyleRef.current}>{children}</section>
           </div>

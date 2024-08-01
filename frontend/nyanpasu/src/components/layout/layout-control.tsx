@@ -1,17 +1,17 @@
-import { debounce } from "lodash-es";
-import { useEffect, useState } from "react";
-import { NotificationType, useNotification } from "@/hooks/use-notification";
-import { classNames } from "@/utils";
+import { debounce } from 'lodash-es';
+import { useEffect, useState } from 'react';
+import { NotificationType, useNotification } from '@/hooks/use-notification';
+import { classNames } from '@/utils';
 import {
   CloseRounded,
   CropSquareRounded,
   FilterNoneRounded,
   HorizontalRuleRounded,
-} from "@mui/icons-material";
-import { alpha, Button, ButtonProps, useTheme } from "@mui/material";
-import { save_window_size_state } from "@nyanpasu/interface";
-import { platform, type Platform } from "@tauri-apps/api/os";
-import { appWindow } from "@tauri-apps/api/window";
+} from '@mui/icons-material';
+import { alpha, Button, ButtonProps, useTheme } from '@mui/material';
+import { save_window_size_state } from '@nyanpasu/interface';
+import { platform, type Platform } from '@tauri-apps/api/os';
+import { appWindow } from '@tauri-apps/api/window';
 
 const CtrlButton = (props: ButtonProps) => {
   const { palette } = useTheme();
@@ -21,7 +21,7 @@ const CtrlButton = (props: ButtonProps) => {
       className="!size-8 !min-w-0"
       sx={{
         backgroundColor: alpha(palette.primary.main, 0.1),
-        svg: { transform: "scale(0.9)" },
+        svg: { transform: 'scale(0.9)' },
       }}
       {...props}
     />
@@ -31,7 +31,7 @@ const CtrlButton = (props: ButtonProps) => {
 export const LayoutControl = ({ className }: { className?: string }) => {
   const [isMaximized, setIsMaximized] = useState(false);
 
-  const [platfrom, setPlatform] = useState<Platform>("win32");
+  const [platfrom, setPlatform] = useState<Platform>('win32');
 
   const updateMaximized = async () => {
     try {
@@ -40,8 +40,8 @@ export const LayoutControl = ({ className }: { className?: string }) => {
     } catch (error) {
       useNotification({
         type: NotificationType.Error,
-        title: "Error",
-        body: typeof error === "string" ? error : (error as Error).message,
+        title: 'Error',
+        body: typeof error === 'string' ? error : (error as Error).message,
       });
     }
   };
@@ -58,15 +58,15 @@ export const LayoutControl = ({ className }: { className?: string }) => {
     // Add a resize handler to update the maximized state
     const resizeHandler = debounce(updateMaximized, 1000);
 
-    window.addEventListener("resize", resizeHandler);
+    window.addEventListener('resize', resizeHandler);
 
     return () => {
-      window.removeEventListener("resize", resizeHandler);
+      window.removeEventListener('resize', resizeHandler);
     };
   }, []);
 
   return (
-    <div className={classNames("flex gap-1", className)} data-tauri-drag-region>
+    <div className={classNames('flex gap-1', className)} data-tauri-drag-region>
       <CtrlButton onClick={() => appWindow.minimize()}>
         <HorizontalRuleRounded fontSize="small" />
       </CtrlButton>
@@ -81,17 +81,17 @@ export const LayoutControl = ({ className }: { className?: string }) => {
           <FilterNoneRounded
             fontSize="small"
             style={{
-              transform: "rotate(180deg) scale(0.8)",
+              transform: 'rotate(180deg) scale(0.8)',
             }}
           />
-        ) : (
+            ) : (
           <CropSquareRounded fontSize="small" />
-        )}
+            )}
       </CtrlButton>
 
       <CtrlButton
         onClick={() => {
-          if (platfrom === "win32") {
+          if (platfrom === 'win32') {
             save_window_size_state().finally(() => {
               appWindow.close();
             });

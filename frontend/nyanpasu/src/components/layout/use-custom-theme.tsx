@@ -1,33 +1,33 @@
-import { useWhyDidYouUpdate } from "ahooks";
-import { useAtomValue, useSetAtom } from "jotai";
-import { mergeWith } from "lodash-es";
-import { useEffect, useMemo } from "react";
-import { defaultTheme } from "@/pages/_theme";
-import { themeMode as themeModeAtom } from "@/store";
-import { alpha, darken, lighten, Theme, useColorScheme } from "@mui/material";
-import { useNyanpasu } from "@nyanpasu/interface";
-import { createMDYTheme } from "@nyanpasu/ui";
-import { appWindow } from "@tauri-apps/api/window";
+import { useWhyDidYouUpdate } from 'ahooks';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { mergeWith } from 'lodash-es';
+import { useEffect, useMemo } from 'react';
+import { defaultTheme } from '@/pages/_theme';
+import { themeMode as themeModeAtom } from '@/store';
+import { alpha, darken, lighten, Theme, useColorScheme } from '@mui/material';
+import { useNyanpasu } from '@nyanpasu/interface';
+import { createMDYTheme } from '@nyanpasu/ui';
+import { appWindow } from '@tauri-apps/api/window';
 
-const applyRootStyleVar = (mode: "light" | "dark", theme: Theme) => {
+const applyRootStyleVar = (mode: 'light' | 'dark', theme: Theme) => {
   const root = document.documentElement;
   const palette = theme.colorSchemes[mode].palette;
 
-  const isLightMode = mode !== "light";
+  const isLightMode = mode !== 'light';
 
   const backgroundColor = isLightMode
     ? darken(palette.secondary.dark, 0.95)
     : lighten(palette.secondary.light, 0.95);
 
-  const selectionColor = isLightMode ? "#d5d5d5" : "#f5f5f5";
-  const scrollerColor = isLightMode ? "#54545480" : "#90939980";
+  const selectionColor = isLightMode ? '#d5d5d5' : '#f5f5f5';
+  const scrollerColor = isLightMode ? '#54545480' : '#90939980';
 
-  root.style.setProperty("--background-color", backgroundColor);
-  root.style.setProperty("--selection-color", selectionColor);
-  root.style.setProperty("--scroller-color", scrollerColor);
-  root.style.setProperty("--primary-main", palette.primary.main);
+  root.style.setProperty('--background-color', backgroundColor);
+  root.style.setProperty('--selection-color', selectionColor);
+  root.style.setProperty('--scroller-color', scrollerColor);
+  root.style.setProperty('--primary-main', palette.primary.main);
   root.style.setProperty(
-    "--background-color-alpha",
+    '--background-color-alpha',
     alpha(palette.primary.main, 0.1),
   );
 };
@@ -39,7 +39,7 @@ export const useCustomTheme = () => {
   const { nyanpasuConfig } = useNyanpasu();
   const themeMode = useAtomValue(themeModeAtom);
 
-  useWhyDidYouUpdate("useCustomTheme", { nyanpasuConfig, themeMode });
+  useWhyDidYouUpdate('useCustomTheme', { nyanpasuConfig, themeMode });
 
   const theme = useMemo(() => {
     const mergedTheme = createMDYTheme(
@@ -48,7 +48,7 @@ export const useCustomTheme = () => {
         defaultTheme,
         nyanpasuConfig?.theme_setting,
         (objValue, srcValue) => {
-          return srcValue === undefined || srcValue === ""
+          return srcValue === undefined || srcValue === ''
             ? objValue
             : srcValue;
         },
@@ -71,7 +71,7 @@ export const ThemeModeProvider = () => {
   const { setMode } = useColorScheme();
 
   useEffect(() => {
-    if (nyanpasuConfig?.theme_mode === "system") {
+    if (nyanpasuConfig?.theme_mode === 'system') {
       appWindow.theme().then((m) => {
         if (m) {
           setThemeMode(m);
@@ -89,7 +89,7 @@ export const ThemeModeProvider = () => {
       };
     }
 
-    const chosenThemeMode = nyanpasuConfig?.theme_mode || "light";
+    const chosenThemeMode = nyanpasuConfig?.theme_mode || 'light';
     setThemeMode(chosenThemeMode);
     setMode(chosenThemeMode);
   }, [nyanpasuConfig?.theme_mode]);

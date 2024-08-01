@@ -1,7 +1,7 @@
-import { fetchLatestCoreVersions, getCoreVersion } from "./tauri";
-import { VergeConfig } from "./types";
+import { fetchLatestCoreVersions, getCoreVersion } from './tauri';
+import { VergeConfig } from './types';
 
-export type ClashCore = Required<VergeConfig>["clash_core"];
+export type ClashCore = Required<VergeConfig>['clash_core'];
 
 export interface Core {
   name: string;
@@ -11,10 +11,10 @@ export interface Core {
 }
 
 export const VALID_CORE: Core[] = [
-  { name: "Clash Premium", core: "clash" },
-  { name: "Mihomo", core: "mihomo" },
-  { name: "Mihomo Alpha", core: "mihomo-alpha" },
-  { name: "Clash Rust", core: "clash-rs" },
+  { name: 'Clash Premium', core: 'clash' },
+  { name: 'Mihomo', core: 'mihomo' },
+  { name: 'Mihomo Alpha', core: 'mihomo-alpha' },
+  { name: 'Clash Rust', core: 'clash-rs' },
 ];
 
 export const fetchCoreVersion = async () => {
@@ -30,17 +30,17 @@ export const fetchLatestCore = async () => {
   const results = await fetchLatestCoreVersions();
 
   const cores = VALID_CORE.map((item) => {
-    const key = item.core.replace(/-/g, "_") as keyof typeof results;
+    const key = item.core.replace(/-/g, '_') as keyof typeof results;
 
     let latest: string;
 
     switch (item.core) {
-      case "clash":
-        latest = `n${results["clash_premium"]}`;
+      case 'clash':
+        latest = `n${results['clash_premium']}`;
         break;
 
-      case "clash-rs":
-        latest = results[key].replace(/v/, "");
+      case 'clash-rs':
+        latest = results[key].replace(/v/, '');
         break;
 
       default:
@@ -50,7 +50,7 @@ export const fetchLatestCore = async () => {
 
     return {
       ...item,
-      latest: latest,
+      latest,
     };
   });
 
@@ -60,20 +60,20 @@ export const fetchLatestCore = async () => {
 export enum SupportedArch {
   // blocked by clash-rs
   // WindowsX86 = "windows-x86",
-  WindowsX86_64 = "windows-x86_64",
+  WindowsX86_64 = 'windows-x86_64',
   // blocked by clash-rs#212
   // WindowsArm64 = "windows-arm64",
-  LinuxAarch64 = "linux-aarch64",
-  LinuxAmd64 = "linux-amd64",
-  DarwinArm64 = "darwin-arm64",
-  DarwinX64 = "darwin-x64",
+  LinuxAarch64 = 'linux-aarch64',
+  LinuxAmd64 = 'linux-amd64',
+  DarwinArm64 = 'darwin-arm64',
+  DarwinX64 = 'darwin-x64'
 }
 
 export enum SupportedCore {
-  Mihomo = "mihomo",
-  MihomoAlpha = "mihomo_alpha",
-  ClashRs = "clash_rs",
-  ClashPremium = "clash_premium",
+  Mihomo = 'mihomo',
+  MihomoAlpha = 'mihomo_alpha',
+  ClashRs = 'clash_rs',
+  ClashPremium = 'clash_premium'
 }
 
 export type ArchMapping = { [key in SupportedArch]: string };

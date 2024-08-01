@@ -1,17 +1,17 @@
-import path from "path";
-import AdmZip from "adm-zip";
-import fs from "fs-extra";
-import { BinInfo } from "types";
-import { downloadFile, resolveSidecar } from "./download";
-import { TAURI_APP_DIR, TEMP_DIR } from "./env";
-import { colorize, consola } from "./logger";
+import path from 'path';
+import AdmZip from 'adm-zip';
+import fs from 'fs-extra';
+import { BinInfo } from 'types';
+import { downloadFile, resolveSidecar } from './download';
+import { TAURI_APP_DIR, TEMP_DIR } from './env';
+import { colorize, consola } from './logger';
 import {
   getClashBackupInfo,
   getClashMetaAlphaInfo,
   getClashMetaInfo,
   getClashRustInfo,
   getNyanpasuServiceInfo,
-} from "./resource";
+} from './resource';
 
 /**
  * download the file to the resources dir
@@ -22,7 +22,7 @@ export const resolveResource = async (
 ) => {
   const { file, downloadURL } = binInfo;
 
-  const resDir = path.join(TAURI_APP_DIR, "resources");
+  const resDir = path.join(TAURI_APP_DIR, 'resources');
 
   const targetPath = path.join(resDir, file);
 
@@ -64,17 +64,17 @@ export class Resolve {
   public async wintun() {
     const { platform } = process;
 
-    if (platform !== "win32") return;
+    if (platform !== 'win32') return;
 
-    const url = "https://www.wintun.net/builds/wintun-0.14.1.zip";
+    const url = 'https://www.wintun.net/builds/wintun-0.14.1.zip';
 
-    const tempDir = path.join(TEMP_DIR, "wintun");
+    const tempDir = path.join(TEMP_DIR, 'wintun');
 
-    const tempZip = path.join(tempDir, "wintun.zip");
+    const tempZip = path.join(tempDir, 'wintun.zip');
 
-    const wintunPath = path.join(tempDir, "wintun/bin/amd64/wintun.dll");
+    const wintunPath = path.join(tempDir, 'wintun/bin/amd64/wintun.dll');
 
-    const targetPath = path.join(TAURI_APP_DIR, "resources", "wintun.dll");
+    const targetPath = path.join(TAURI_APP_DIR, 'resources', 'wintun.dll');
 
     if (!this.options?.force && (await fs.pathExists(targetPath))) return;
 
@@ -106,29 +106,33 @@ export class Resolve {
 
   public mmdb() {
     return resolveResource({
-      file: "Country.mmdb",
-      downloadURL: `https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb`,
+      file: 'Country.mmdb',
+      downloadURL:
+        'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb',
     });
   }
 
   public geosite() {
     return resolveResource({
-      file: "geosite.dat",
-      downloadURL: `https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat`,
+      file: 'geosite.dat',
+      downloadURL:
+        'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat',
     });
   }
 
   public geoip() {
     return resolveResource({
-      file: "geoip.dat",
-      downloadURL: `https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat`,
+      file: 'geoip.dat',
+      downloadURL:
+        'https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat',
     });
   }
 
   public enableLoopback() {
     return resolveResource({
-      file: "enableLoopback.exe",
-      downloadURL: `https://github.com/Kuingsmile/uwp-tool/releases/download/latest/enableLoopback.exe`,
+      file: 'enableLoopback.exe',
+      downloadURL:
+        'https://github.com/Kuingsmile/uwp-tool/releases/download/latest/enableLoopback.exe',
     });
   }
 

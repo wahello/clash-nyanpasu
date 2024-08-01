@@ -1,10 +1,10 @@
-import { useLockFn } from "ahooks";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useMessage } from "@/hooks/use-notification";
-import { Refresh } from "@mui/icons-material";
-import LoadingButton from "@mui/lab/LoadingButton";
-import { useClashCore } from "@nyanpasu/interface";
+import { useLockFn } from 'ahooks';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useMessage } from '@/hooks/use-notification';
+import { Refresh } from '@mui/icons-material';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { useClashCore } from '@nyanpasu/interface';
 
 export const UpdateProviders = () => {
   const { t } = useTranslation();
@@ -15,9 +15,9 @@ export const UpdateProviders = () => {
 
   const handleProviderUpdate = useLockFn(async () => {
     if (!getRulesProviders.data) {
-      useMessage(`No Providers.`, {
-        type: "info",
-        title: t("Info"),
+      useMessage('No Providers.', {
+        type: 'info',
+        title: t('Info'),
       });
 
       return;
@@ -35,8 +35,8 @@ export const UpdateProviders = () => {
       );
     } catch (e) {
       useMessage(`Update all failed.\n${String(e)}`, {
-        type: "error",
-        title: t("Error"),
+        type: 'error',
+        title: t('Error'),
       });
     } finally {
       setLoading(false);
@@ -50,7 +50,7 @@ export const UpdateProviders = () => {
       startIcon={<Refresh />}
       onClick={handleProviderUpdate}
     >
-      {t("Update Rules Providers All")}
+      {t('Update Rules Providers All')}
     </LoadingButton>
   );
 };

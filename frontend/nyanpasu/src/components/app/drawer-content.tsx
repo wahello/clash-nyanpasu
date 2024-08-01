@@ -1,12 +1,12 @@
-import { useSize } from "ahooks";
-import clsx from "clsx";
-import { useCallback, useEffect, useRef, useState } from "react";
-import getSystem from "@/utils/get-system";
-import { languageQuirks } from "@/utils/language";
-import { getRoutesWithIcon } from "@/utils/routes-utils";
-import { useNyanpasu } from "@nyanpasu/interface";
-import AnimatedLogo from "../layout/animated-logo";
-import RouteListItem from "./modules/route-list-item";
+import { useSize } from 'ahooks';
+import clsx from 'clsx';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import getSystem from '@/utils/get-system';
+import { languageQuirks } from '@/utils/language';
+import { getRoutesWithIcon } from '@/utils/routes-utils';
+import { useNyanpasu } from '@nyanpasu/interface';
+import AnimatedLogo from '../layout/animated-logo';
+import RouteListItem from './modules/route-list-item';
 
 export const DrawerContent = ({ className }: { className?: string }) => {
   const [onlyIcon, setOnlyIcon] = useState(false);
@@ -24,7 +24,7 @@ export const DrawerContent = ({ className }: { className?: string }) => {
       if (value) {
         if (
           value <
-          languageQuirks[nyanpasuConfig?.language ?? "en"].drawer.minWidth
+          languageQuirks[nyanpasuConfig?.language ?? 'en'].drawer.minWidth
         ) {
           setOnlyIcon(true);
         } else {
@@ -45,17 +45,17 @@ export const DrawerContent = ({ className }: { className?: string }) => {
     <div
       ref={contentRef}
       className={clsx(
-        "p-4",
-        getSystem() === "macos" ? "pt-14" : "pt-8",
-        "w-full",
-        "h-full",
-        "flex",
-        "flex-col",
-        "gap-4",
+        'p-4',
+        getSystem() === 'macos' ? 'pt-14' : 'pt-8',
+        'w-full',
+        'h-full',
+        'flex',
+        'flex-col',
+        'gap-4',
         className,
       )}
       style={{
-        backgroundColor: "var(--background-color-alpha)",
+        backgroundColor: 'var(--background-color-alpha)',
       }}
       data-windrag
     >
@@ -69,7 +69,7 @@ export const DrawerContent = ({ className }: { className?: string }) => {
             className="mr-1 mt-1 whitespace-pre-wrap text-lg font-bold"
             data-windrag
           >
-            {"Clash\nNyanpasu"}
+            {'Clash\nNyanpasu'}
           </div>
         )}
       </div>

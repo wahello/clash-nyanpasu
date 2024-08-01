@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { alpha, Button, Menu, MenuItem, useTheme } from "@mui/material";
+import { useState } from 'react';
+import { alpha, Button, Menu, MenuItem, useTheme } from '@mui/material';
 
 export interface LogLevelProps {
   value: string;
@@ -17,10 +17,10 @@ export const LogLevel = ({ value, onChange }: LogLevelProps) => {
   };
 
   const mapping: { [key: string]: string } = {
-    all: "ALL",
-    inf: "INFO",
-    warn: "WARN",
-    err: "ERROR",
+    all: 'ALL',
+    inf: 'INFO',
+    warn: 'WARN',
+    err: 'ERROR',
   };
 
   return (
@@ -28,7 +28,7 @@ export const LogLevel = ({ value, onChange }: LogLevelProps) => {
       <Button
         size="small"
         sx={{
-          textTransform: "none",
+          textTransform: 'none',
           backgroundColor: alpha(palette.primary.main, 0.1),
         }}
         onClick={(e) => setAnchorEl(e.currentTarget)}

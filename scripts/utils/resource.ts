@@ -1,15 +1,15 @@
-import fetch, { type RequestInit } from "node-fetch";
-import { BinInfo } from "types";
+import fetch, { type RequestInit } from 'node-fetch';
+import { BinInfo } from 'types';
 import {
   CLASH_META_ALPHA_MANIFEST,
   CLASH_META_MANIFEST,
-} from "../manifest/clash-meta";
-import { CLASH_MANIFEST } from "../manifest/clash-premium";
-import { CLASH_RS_MANIFEST } from "../manifest/clash-rs";
-import { getProxyAgent } from "./";
-import { SIDECAR_HOST } from "./consts";
+} from '../manifest/clash-meta';
+import { CLASH_MANIFEST } from '../manifest/clash-premium';
+import { CLASH_RS_MANIFEST } from '../manifest/clash-rs';
+import { getProxyAgent } from './';
+import { SIDECAR_HOST } from './consts';
 
-const SERVICE_REPO = "LibNyanpasu/nyanpasu-service";
+const SERVICE_REPO = 'LibNyanpasu/nyanpasu-service';
 
 export const getClashInfo = ({
   platform,
@@ -24,20 +24,20 @@ export const getClashInfo = ({
 
   const name = BIN_MAP[`${platform}-${arch}`];
 
-  const isWin = platform === "win32";
+  const isWin = platform === 'win32';
 
-  const urlExt = isWin ? "zip" : "gz";
+  const urlExt = isWin ? 'zip' : 'gz';
 
   const downloadURL = `${URL_PREFIX}${name}-${LATEST_DATE}.${urlExt}`;
 
-  const exeFile = `${name}${isWin ? ".exe" : ""}`;
+  const exeFile = `${name}${isWin ? '.exe' : ''}`;
 
   const tmpFile = `${name}.${urlExt}`;
 
-  const targetFile = `clash-${sidecarHost}${isWin ? ".exe" : ""}`;
+  const targetFile = `clash-${sidecarHost}${isWin ? '.exe' : ''}`;
 
   return {
-    name: "clash",
+    name: 'clash',
     targetFile,
     exeFile,
     tmpFile,
@@ -58,20 +58,20 @@ export const getClashBackupInfo = ({
 
   const name = BIN_MAP[`${platform}-${arch}`];
 
-  const isWin = platform === "win32";
+  const isWin = platform === 'win32';
 
-  const urlExt = isWin ? "zip" : "gz";
+  const urlExt = isWin ? 'zip' : 'gz';
 
   const downloadURL = `${BACKUP_URL_PREFIX}${BACKUP_LATEST_DATE}/${name}-n${BACKUP_LATEST_DATE}.${urlExt}`;
 
-  const exeFile = `${name}${isWin ? ".exe" : ""}`;
+  const exeFile = `${name}${isWin ? '.exe' : ''}`;
 
   const tmpFile = `${name}.${urlExt}`;
 
-  const targetFile = `clash-${sidecarHost}${isWin ? ".exe" : ""}`;
+  const targetFile = `clash-${sidecarHost}${isWin ? '.exe' : ''}`;
 
   return {
-    name: "clash",
+    name: 'clash',
     targetFile,
     exeFile,
     tmpFile,
@@ -92,20 +92,20 @@ export const getClashMetaInfo = ({
 
   const name = BIN_MAP[`${platform}-${arch}`];
 
-  const isWin = platform === "win32";
+  const isWin = platform === 'win32';
 
-  const urlExt = isWin ? "zip" : "gz";
+  const urlExt = isWin ? 'zip' : 'gz';
 
   const downloadURL = `${URL_PREFIX}/${name}-${VERSION}.${urlExt}`;
 
-  const exeFile = `${name}${isWin ? ".exe" : ""}`;
+  const exeFile = `${name}${isWin ? '.exe' : ''}`;
 
   const tmpFile = `${name}-${VERSION}.${urlExt}`;
 
-  const targetFile = `mihomo-${sidecarHost}${isWin ? ".exe" : ""}`;
+  const targetFile = `mihomo-${sidecarHost}${isWin ? '.exe' : ''}`;
 
   return {
-    name: "mihomo",
+    name: 'mihomo',
     targetFile,
     exeFile,
     tmpFile,
@@ -126,20 +126,20 @@ export const getClashMetaAlphaInfo = ({
 
   const name = BIN_MAP[`${platform}-${arch}`];
 
-  const isWin = platform === "win32";
+  const isWin = platform === 'win32';
 
-  const urlExt = isWin ? "zip" : "gz";
+  const urlExt = isWin ? 'zip' : 'gz';
 
   const downloadURL = `${URL_PREFIX}/${name}-${VERSION}.${urlExt}`;
 
-  const exeFile = `${name}${isWin ? ".exe" : ""}`;
+  const exeFile = `${name}${isWin ? '.exe' : ''}`;
 
   const tmpFile = `${name}-${VERSION}.${urlExt}`;
 
-  const targetFile = `mihomo-alpha-${sidecarHost}${isWin ? ".exe" : ""}`;
+  const targetFile = `mihomo-alpha-${sidecarHost}${isWin ? '.exe' : ''}`;
 
   return {
-    name: "mihomo-alpha",
+    name: 'mihomo-alpha',
     targetFile,
     exeFile,
     tmpFile,
@@ -160,18 +160,18 @@ export const getClashRustInfo = ({
 
   const name = BIN_MAP[`${platform}-${arch}`];
 
-  const isWin = platform === "win32";
+  const isWin = platform === 'win32';
 
-  const exeFile = `${name}${isWin ? ".exe" : ""}`;
+  const exeFile = `${name}${isWin ? '.exe' : ''}`;
 
-  const downloadURL = `${URL_PREFIX}${VERSION}/${name}${isWin ? ".exe" : ""}`;
+  const downloadURL = `${URL_PREFIX}${VERSION}/${name}${isWin ? '.exe' : ''}`;
 
-  const tmpFile = `${name}${isWin ? ".exe" : ""}`;
+  const tmpFile = `${name}${isWin ? '.exe' : ''}`;
 
-  const targetFile = `clash-rs-${sidecarHost}${isWin ? ".exe" : ""}`;
+  const targetFile = `clash-rs-${sidecarHost}${isWin ? '.exe' : ''}`;
 
   return {
-    name: "clash-rs",
+    name: 'clash-rs',
     targetFile,
     exeFile,
     tmpFile,
@@ -192,7 +192,7 @@ export const getMetaAlphaLatestVersion = async () => {
     }
 
     const response = await fetch(VERSION_URL!, {
-      method: "GET",
+      method: 'GET',
       ...opts,
     });
 
@@ -202,7 +202,7 @@ export const getMetaAlphaLatestVersion = async () => {
 
     return v.trim();
   } catch (error) {
-    console.error("Error fetching latest release version:", error);
+    console.error('Error fetching latest release version:', error);
 
     process.exit(1);
   }
@@ -217,26 +217,26 @@ export const getNyanpasuServiceLatestVersion = async () => {
       opts.agent = httpProxy;
     }
 
-    const url = new URL("https://github.com");
+    const url = new URL('https://github.com');
     url.pathname = `/${SERVICE_REPO}/releases/latest`;
     const response = await fetch(url, {
-      method: "GET",
-      redirect: "manual",
+      method: 'GET',
+      redirect: 'manual',
       ...opts,
     });
 
-    const location = response.headers.get("location");
+    const location = response.headers.get('location');
     if (!location) {
-      throw new Error("Cannot find location from the response header");
+      throw new Error('Cannot find location from the response header');
     }
-    const tag = location.split("/").pop();
+    const tag = location.split('/').pop();
     if (!tag) {
-      throw new Error("Cannot find tag from the location");
+      throw new Error('Cannot find tag from the location');
     }
     console.log(`Latest release version: ${tag}`);
     return tag.trim();
   } catch (error) {
-    console.error("Error fetching latest release version:", error);
+    console.error('Error fetching latest release version:', error);
     process.exit(1);
   }
 };
@@ -246,17 +246,17 @@ export const getNyanpasuServiceInfo = async ({
 }: {
   sidecarHost: string;
 }): Promise<BinInfo> => {
-  const name = `nyanpasu-service`;
-  const isWin = SIDECAR_HOST?.includes("windows");
-  const urlExt = isWin ? "zip" : "tar.gz";
+  const name = 'nyanpasu-service';
+  const isWin = SIDECAR_HOST?.includes('windows');
+  const urlExt = isWin ? 'zip' : 'tar.gz';
   // first we had to get the latest tag
   const version = await getNyanpasuServiceLatestVersion();
   const downloadURL = `https://github.com/${SERVICE_REPO}/releases/download/${version}/${name}-${sidecarHost}.${urlExt}`;
-  const exeFile = `${name}${isWin ? ".exe" : ""}`;
+  const exeFile = `${name}${isWin ? '.exe' : ''}`;
   const tmpFile = `${name}-${sidecarHost}.${urlExt}`;
-  const targetFile = `nyanpasu-service-${sidecarHost}${isWin ? ".exe" : ""}`;
+  const targetFile = `nyanpasu-service-${sidecarHost}${isWin ? '.exe' : ''}`;
   return {
-    name: "clash",
+    name: 'clash',
     targetFile,
     exeFile,
     tmpFile,

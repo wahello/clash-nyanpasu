@@ -1,26 +1,26 @@
-import ClashRs from "@/assets/image/core/clash-rs.png";
-import ClashMeta from "@/assets/image/core/clash.meta.png";
-import Clash from "@/assets/image/core/clash.png";
-import FiberManualRecord from "@mui/icons-material/FiberManualRecord";
-import Update from "@mui/icons-material/Update";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import { alpha, useTheme } from "@mui/material/styles";
-import Tooltip from "@mui/material/Tooltip";
-import Typography from "@mui/material/Typography";
-import { ClashCore, Core } from "@nyanpasu/interface";
-import { Item } from "./clash-web";
+import ClashRs from '@/assets/image/core/clash-rs.png';
+import ClashMeta from '@/assets/image/core/clash.meta.png';
+import Clash from '@/assets/image/core/clash.png';
+import FiberManualRecord from '@mui/icons-material/FiberManualRecord';
+import Update from '@mui/icons-material/Update';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import { alpha, useTheme } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import { ClashCore, Core } from '@nyanpasu/interface';
+import { Item } from './clash-web';
 
 export const getImage = (core: ClashCore) => {
   switch (core) {
-    case "mihomo":
-    case "mihomo-alpha": {
+    case 'mihomo':
+    case 'mihomo-alpha': {
       return ClashMeta;
     }
 
-    case "clash-rs": {
+    case 'clash-rs': {
       return ClashRs;
     }
 
@@ -65,18 +65,18 @@ export const ClashCoreItem = ({
       <ListItemButton
         sx={{
           padding: 0,
-          borderRadius: "16px",
+          borderRadius: '16px',
 
-          "&.Mui-selected": {
+          '&.Mui-selected': {
             backgroundColor: alpha(palette.success.main, 0.2),
           },
         }}
         selected={selected}
         onClick={() => onClick(data.core)}
       >
-        <Item elevation={0} sx={{ width: "100%" }}>
+        <Item elevation={0} sx={{ width: '100%' }}>
           <Box display="flex" alignItems="center" gap={2}>
-            <img style={{ width: "64px" }} src={getImage(data.core)} />
+            <img style={{ width: '64px' }} src={getImage(data.core)} />
 
             <Box>
               <Typography variant="subtitle1" fontWeight={700}>
@@ -101,7 +101,7 @@ export const ClashCoreItem = ({
             {newVersion && (
               <Tooltip title="Update Core">
                 <IconButton
-                  sx={{ marginLeft: "auto" }}
+                  sx={{ marginLeft: 'auto' }}
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();

@@ -1,11 +1,11 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
-import { classNames } from "@/utils";
-import getSystem from "@/utils/get-system";
-import { MenuOpen } from "@mui/icons-material";
-import { alpha, Backdrop, IconButton, useTheme } from "@mui/material";
-import AnimatedLogo from "../layout/animated-logo";
-import DrawerContent from "./drawer-content";
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
+import { classNames } from '@/utils';
+import getSystem from '@/utils/get-system';
+import { MenuOpen } from '@mui/icons-material';
+import { alpha, Backdrop, IconButton, useTheme } from '@mui/material';
+import AnimatedLogo from '../layout/animated-logo';
+import DrawerContent from './drawer-content';
 
 export const AppDrawer = () => {
   const { palette } = useTheme();
@@ -16,8 +16,8 @@ export const AppDrawer = () => {
     return (
       <div
         className={classNames(
-          "fixed z-10 flex items-center gap-2",
-          getSystem() === "macos" ? "left-[6.5rem] top-3" : "left-6 top-1.5",
+          'fixed z-10 flex items-center gap-2',
+          getSystem() === 'macos' ? 'left-[6.5rem] top-3' : 'left-6 top-1.5'
         )}
         data-windrag
       >
@@ -25,7 +25,7 @@ export const AppDrawer = () => {
           className="!size-8 !min-w-0"
           sx={{
             backgroundColor: alpha(palette.primary.main, 0.1),
-            svg: { transform: "scale(0.9)" },
+            svg: { transform: 'scale(0.9)' },
           }}
           onClick={() => setOpen(true)}
         >
@@ -59,7 +59,7 @@ export const AppDrawer = () => {
           <div className="h-full w-full">
             <motion.div
               className="h-full"
-              animate={open ? "open" : "closed"}
+              animate={open ? 'open' : 'closed'}
               variants={{
                 open: {
                   x: 0,
@@ -69,7 +69,7 @@ export const AppDrawer = () => {
                 },
               }}
               transition={{
-                type: "tween",
+                type: 'tween',
               }}
             >
               <DrawerContent isDrawer className="max-w-64" />

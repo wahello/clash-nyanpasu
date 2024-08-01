@@ -1,22 +1,22 @@
-import figlet from "figlet";
-import { HttpsProxyAgent } from "https-proxy-agent";
-import { GITHUB_PROXY } from "./env";
+import figlet from 'figlet';
+import { HttpsProxyAgent } from 'https-proxy-agent';
+import { GITHUB_PROXY } from './env';
 
 export const getGithubUrl = (url: string) => {
-  return new URL(url.replace(/^https?:\/\//g, ""), GITHUB_PROXY).toString();
+  return new URL(url.replace(/^https?:\/\//g, ''), GITHUB_PROXY).toString();
 };
 
 export const array2text = (
   array: string[],
-  type: "newline" | "space" = "newline",
+  type: 'newline' | 'space' = 'newline'
 ): string => {
-  let result = "";
+  let result = '';
 
   const getSplit = () => {
-    if (type == "newline") {
-      return "\n";
-    } else if (type == "space") {
-      return " ";
+    if (type == 'newline') {
+      return '\n';
+    } else if (type == 'space') {
+      return ' ';
     }
   };
 
@@ -32,7 +32,7 @@ export const array2text = (
 };
 
 export const printNyanpasu = () => {
-  const ascii = figlet.textSync("Clash Nyanpasu", {
+  const ascii = figlet.textSync('Clash Nyanpasu', {
     whitespaceBreak: true,
   });
 

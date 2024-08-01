@@ -1,7 +1,7 @@
-import { ofetch } from "ofetch";
+import { ofetch } from 'ofetch';
 
 export const $request = ofetch.create({
-  mode: "no-cors",
+  mode: 'no-cors',
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
